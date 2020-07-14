@@ -29,6 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 }
             }));
         } else {
+            localStorage.clear();
+            this.router.navigateByUrl('/login');
             return next.handle(req);
         }
     }
