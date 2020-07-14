@@ -1,0 +1,16 @@
+<h1>TCC Home Care</h1>
+<form [formGroup]="loginForm" (submit)="login()">
+    <div class="container">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Digite seu email" formControlName="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </div>
+</form>
