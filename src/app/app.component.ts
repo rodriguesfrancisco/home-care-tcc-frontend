@@ -15,11 +15,4 @@ export class AppComponent {
     constructor(private appService: AppService, private http: HttpClient, private router: Router) {
         //this.appService.authenticate(undefined, undefined);
     }
-
-    logout() {
-        this.http.post('logout', {}).pipe(finalize(() => {
-            this.appService.authenticated = false;
-            this.router.navigateByUrl('/login');
-        })).subscribe();
-    }
 }

@@ -9,24 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-    greeting = { id: null, content: null };
+    user = { username: null, roles: null };
 
-    constructor(private appService: AppService, private http: HttpClient) {
-        http.get('http://localhost:8080/token').subscribe(data => {
-            const token = data['token'];
-            http.get('http://localhost:8080', { headers: new HttpHeaders().set('X-Auth-Token', token) })
-                .subscribe(response => {
-                    this.greeting.id = response['id'];
-                    this.greeting.content = response['content'];
-                })
-        }, () => { });
-    }
+    constructor(private http: HttpClient) {
 
-    authenticated() {
-        return this.appService.authenticated;
     }
 
     ngOnInit(): void {
+        this.http.get('http://localhost:8080/me').subscribe(data => {
+            this.user.username = data['username'];
+            this.user.roles = data['roles'];
+        });
     }
 
 }

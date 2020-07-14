@@ -1,5 +1,2 @@
-<h1>Greetings!</h1>
-<div>
-    <p>The ID is {{greeting.id}}</p>
-    <p>The content is {{greeting.content}}</p>
-</div>
+<h1>Greetings! {{ user.username }} your roles is: <div *ngFor="let role of user.roles">{{role}}</div>
+</h1>

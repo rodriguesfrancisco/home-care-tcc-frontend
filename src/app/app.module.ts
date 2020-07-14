@@ -11,16 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
-
-@Injectable()
-export class XhrInterceptor implements HttpInterceptor {
-    intercept(req: HttpRequest<any>, next: HttpHandler) {
-        const xhr = req.clone({
-            headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
-        });
-        return next.handle(xhr);
-    }
-}
+import { AuthInterceptor } from './interceptors/AuthInterceptor';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -46,7 +37,7 @@ const routes: Routes = [
     ],
     providers: [
         AppService,
-        { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
     bootstrap: [AppComponent]
 })
