@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,13 @@ export class LoginComponent implements OnInit {
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
+
+        const token = localStorage.getItem('token');
+        if (token) {
+            http.get(`${environment.api}/me`).subscribe(response => {
+                this.router.navigateByUrl('/home');
+            });
+        }
     }
 
     login() {
