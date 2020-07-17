@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/User';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
         { id: 'ROLE_USER_PROFISSIONAL', descricao: 'Profissional' }
     ]
 
-    constructor(formBuider: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {
+    constructor(formBuider: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
         this.registerForm = formBuider.group({
             nomeCompleto: ['', Validators.required],
             email: ['', Validators.required],
@@ -38,6 +39,8 @@ export class RegisterComponent implements OnInit {
             };
 
             this.authService.register(userRegister).subscribe((response) => {
+                this.snackBar.open('Cadastro realizado com sucesso', null, { duration: 5000, verticalPosition: 'top' });
+                this.router.navigateByUrl('/login');
             }, (error) => {
                 this.snackBar.open(error.error, null, { duration: 5000, verticalPosition: 'top' });
             });
