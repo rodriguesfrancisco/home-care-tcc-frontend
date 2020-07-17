@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/User';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
 
-    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+    constructor(http: HttpClient, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
         this.loginForm = this.formBuilder.group({
             email: ['', Validators.required],
             password: ['', Validators.required]
@@ -23,9 +24,7 @@ export class LoginComponent implements OnInit {
 
         const token = localStorage.getItem('token');
         if (token) {
-            http.get(`${environment.api}/me`).subscribe(response => {
-                this.router.navigateByUrl('/home');
-            });
+            http.get<User>(`${environment.api}/me`).subscribe();
         }
     }
 

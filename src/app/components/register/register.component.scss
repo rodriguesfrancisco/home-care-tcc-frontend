@@ -1,3 +1,11 @@
+mat-form-field, button {
+    width: 60%;
+}
+
+button {
+    margin-bottom: 5%;
+}
+
 .container {
     max-width: 65%;
     text-align: center;
@@ -9,19 +17,6 @@
     padding-bottom: 5%;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 5%;
-}
-
-mat-form-field, button {
-    width: 60%;
-}
-
-button {
-    margin-bottom: 5%;
-}
-
-p {
-    margin-bottom: 0;
+mat-radio-button {
+    margin: 1% 2%;
 }

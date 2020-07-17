@@ -1,5 +1,5 @@
 <h1>TCC Home Care</h1>
-<form [formGroup]="loginForm" (submit)="login()">
+<form [formGroup]="loginForm">
     <div class="container">
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
@@ -12,5 +12,7 @@
         </mat-form-field>
         <br>
         <button mat-raised-button color="primary" (click)="login()">Login</button>
+        <p>Ainda não tem uma conta?</p>
+        <a href="/register">Registre-se aqui.</a>
     </div>
 </form>

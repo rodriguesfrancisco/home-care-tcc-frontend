@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
     selector: 'app-home',
@@ -9,16 +13,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-    user = { username: null, roles: null };
+    user: User = {
+        nomeCompleto: '',
+        roles: null
+    };
 
-    constructor(private http: HttpClient) {
-
-    }
+    constructor(private http: HttpClient, private authService: AuthService) { }
 
     ngOnInit(): void {
-        this.http.get('http://localhost:8080/me').subscribe(data => {
-            this.user.username = data['username'];
-            this.user.roles = data['roles'];
+        this.authService.me().subscribe(response => {
+            this.user = response;
         });
     }
 

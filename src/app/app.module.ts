@@ -12,18 +12,21 @@ import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent }
 ]
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         RouterModule.forRoot(routes),

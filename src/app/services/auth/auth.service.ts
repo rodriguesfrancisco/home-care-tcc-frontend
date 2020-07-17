@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, skip } from 'rxjs/operators';
 
 import * as moment from 'moment';
 import { JWTToken } from 'src/app/models/JWTToken';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/User';
 
 @Injectable({
     providedIn: 'root'
@@ -13,10 +15,18 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     login(email: string, password: string) {
-        return this.http.post<JWTToken>('http://localhost:8080/auth/login', { username: email, password })
+        return this.http.post<JWTToken>(`${environment.api}/auth/login`, { email, password })
             .pipe(
                 tap(res => this.setSession(res))
             );
+    }
+
+    register(userRegister: User) {
+        return this.http.post(`${environment.api}/auth/register`, userRegister, { headers: { skip: "true" } });
+    }
+
+    me() {
+        return this.http.get<User>(`${environment.api}/auth/me`);
     }
 
     private setSession(authResult: JWTToken) {

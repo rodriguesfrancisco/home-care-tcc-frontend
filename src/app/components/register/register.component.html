@@ -1,0 +1,26 @@
+<form [formGroup]="registerForm">
+    <div class="container">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput placeholder="Digite seu nome completo" formControlName="nomeCompleto">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Digite seu email" formControlName="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
+        </mat-form-field>
+        <br>
+        <mat-radio-group aria-label="Você é um paciente ou profissional?" formControlName="role">
+            <mat-label>Você é um paciente ou profissional?</mat-label>
+            <br>
+            <mat-radio-button *ngFor="let tipo of tipoUsuario" value="{{tipo.id}}">{{tipo.descricao}}</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <button mat-raised-button color="primary" (click)="register()">Registrar</button>
+    </div>
+</form>
