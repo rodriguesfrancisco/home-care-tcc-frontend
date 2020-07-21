@@ -1,26 +1,32 @@
 <form [formGroup]="registerForm">
     <div class="container">
-        <mat-form-field appearance="outline">
-            <mat-label>Nome Completo</mat-label>
-            <input matInput placeholder="Digite seu nome completo" formControlName="nomeCompleto">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Digite seu email" formControlName="email">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-            <mat-label>Senha</mat-label>
-            <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
-        </mat-form-field>
-        <br>
-        <mat-radio-group aria-label="Você é um paciente ou profissional?" formControlName="role">
+        <mat-radio-group aria-label="Você é um paciente ou profissional?" formControlName="role"
+            (change)="tipoUsuarioEventListener($event)">
             <mat-label>Você é um paciente ou profissional?</mat-label>
             <br>
             <mat-radio-button *ngFor="let tipo of tipoUsuario" value="{{tipo.id}}">{{tipo.descricao}}</mat-radio-button>
         </mat-radio-group>
+
+        <mat-radio-group aria-label="Você é a pessoa responsável pelo paciente ou o próprio paciente?"
+            formControlName="isResponsavel" *ngIf="registerForm.value.role === 'ROLE_USER_PACIENTE'"
+            (change)="isResponsavelEventListener($event)">
+            <br>
+            <mat-label>Você é a pessoa responsável pelo paciente ou o próprio paciente?</mat-label>
+            <br>
+            <mat-radio-button *ngFor="let isResponsavel of isResponsavelRadio" value="{{isResponsavel.value}}">
+                {{isResponsavel.descricao}}</mat-radio-button>
+            <br>
+        </mat-radio-group>
+
+        <app-responsavel-form [parentForm]="registerForm" *ngIf="registerForm.value.isResponsavel == 'true'">
+        </app-responsavel-form>
+
+        <app-user-form [parentForm]="registerForm"
+            *ngIf="registerForm.value.isResponsavel == 'false' || registerForm.value.role == 'ROLE_USER_PROFISSIONAL'">
+        </app-user-form>
+
         <br>
-        <button mat-raised-button color="primary" (click)="register()">Registrar</button>
+        <button mat-raised-button color="primary" (click)="register()"
+            [disabled]="!registerForm.valid">Registrar</button>
     </div>
 </form>

@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { ResponsavelFormComponent } from './components/responsavel-form/responsavel-form.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -26,7 +28,9 @@ const routes: Routes = [
         AppComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ResponsavelFormComponent,
+        UserFormComponent
     ],
     imports: [
         RouterModule.forRoot(routes),

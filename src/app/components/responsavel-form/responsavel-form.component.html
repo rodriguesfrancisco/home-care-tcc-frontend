@@ -1,0 +1,25 @@
+<div [formGroup]="parentForm">
+    <hr>
+    <p>Dados do Responsável:</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput placeholder="Digite seu nome completo" [formControlName]="'nomeCompleto'">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Digite seu email" [formControlName]="'email'">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="Digite sua senha" [formControlName]="'password'" type="password">
+    </mat-form-field>
+    <hr>
+    <p>Dados do paciente:</p>
+    <mat-form-field appearance="outline">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput placeholder="Digite seu nome completo" [formControlName]="'nomeCompletoPaciente'">
+    </mat-form-field>
+    <br>
+</div>
