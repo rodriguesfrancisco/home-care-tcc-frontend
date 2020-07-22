@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <span>TCC Home Care</span>
+    <span class="topnav-spacer"></span>
+    <button mat-icon-button class="logout-button" aria-label="Logout button" (click)="logout()"
+        *ngIf="!checkExcludedLogoutRoutes()">
+        <mat-label>Logout</mat-label>
+        <mat-icon>power_settings_new</mat-icon>
+    </button>
+</mat-toolbar>

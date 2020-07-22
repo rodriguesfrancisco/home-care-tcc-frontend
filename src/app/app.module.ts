@@ -15,6 +15,7 @@ import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { ResponsavelFormComponent } from './components/responsavel-form/responsavel-form.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { TopnavComponent } from './components/topnav/topnav.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -30,7 +31,8 @@ const routes: Routes = [
         LoginComponent,
         RegisterComponent,
         ResponsavelFormComponent,
-        UserFormComponent
+        UserFormComponent,
+        TopnavComponent
     ],
     imports: [
         RouterModule.forRoot(routes),
