@@ -15,4 +15,18 @@
         <mat-label>Senha</mat-label>
         <input matInput placeholder="Digite sua senha" [formControlName]="'password'" type="password">
     </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Selecione a data de nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" [formControlName]="'dataNascimento'" [min]="minDate" [max]="maxDate"
+            disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-radio-group aria-label="Selecione o sexo" [formControlName]="'sexo'">
+        <mat-label>Selecione o sexo:</mat-label>
+        <br>
+        <mat-radio-button *ngFor="let sex of sexos" value="{{sex.id}}">{{sex.descricao}}</mat-radio-button>
+    </mat-radio-group>
 </div>

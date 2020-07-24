@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { User } from 'src/app/models/User';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatRadioChange } from '@angular/material/radio';
+import { User } from 'src/app/models/User';
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+    styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -31,6 +31,14 @@ export class RegisterComponent implements OnInit {
         { name: 'password' }
     ];
 
+    sexos = [
+        { id: 'F', descricao: 'Feminino' },
+        { id: 'M', descricao: 'Masculino' },
+    ]
+
+    minDate = new Date(1930, 0, 1);
+    maxDate = new Date(2009, 11, 31);
+
     constructor(private formBuider: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
         this.registerForm = formBuider.group({
             role: ['', Validators.required]
@@ -39,25 +47,32 @@ export class RegisterComponent implements OnInit {
 
     register() {
         if (this.registerForm.valid) {
+
             let userRegister: User;
             if (this.registerForm.value.isResponsavel == 'true') {
-                const { nomeCompleto, email, password, role, nomeCompletoPaciente } = this.registerForm.value;
+                const { nomeCompleto, email, password, dataNascimento, sexo, nomeCompletoPaciente, dataNascimentoPaciente, sexoPaciente } = this.registerForm.value;
                 userRegister = {
                     nomeCompleto,
                     email,
                     password,
+                    dataNascimento,
+                    sexo,
                     roles: ['ROLE_USER_RESPONSAVEL'],
                     paciente: {
                         nomeCompleto: nomeCompletoPaciente,
-                        roles: ['ROLE_USER_PACIENTE']
+                        roles: ['ROLE_USER_PACIENTE'],
+                        sexo: sexoPaciente,
+                        dataNascimento: dataNascimentoPaciente
                     }
                 };
             } else {
-                const { nomeCompleto, email, password, role } = this.registerForm.value;
+                const { nomeCompleto, email, password, sexo, dataNascimento, role } = this.registerForm.value;
                 userRegister = {
                     nomeCompleto,
                     email,
                     password,
+                    dataNascimento,
+                    sexo,
                     roles: [role]
                 };
             }
@@ -78,6 +93,8 @@ export class RegisterComponent implements OnInit {
                 nomeCompleto: ['', [Validators.required, Validators.minLength(4)]],
                 email: ['', [Validators.required, Validators.email]],
                 password: ['', [Validators.required, Validators.minLength(8)]],
+                sexo: ['', Validators.required],
+                dataNascimento: ['', Validators.required]
             })
         } else {
             this.registerForm = this.formBuider.group({
@@ -95,7 +112,11 @@ export class RegisterComponent implements OnInit {
                 nomeCompleto: ['', [Validators.required, Validators.minLength(4)]],
                 email: ['', [Validators.required, Validators.email]],
                 password: ['', [Validators.required, Validators.minLength(8)]],
+                sexo: ['', Validators.required],
+                dataNascimento: ['', Validators.required],
                 nomeCompletoPaciente: ['', [Validators.required, Validators.minLength(4)]],
+                sexoPaciente: ['', Validators.required],
+                dataNascimentoPaciente: ['', Validators.required],
             });
         } else {
             this.registerForm = this.formBuider.group({
@@ -104,6 +125,8 @@ export class RegisterComponent implements OnInit {
                 nomeCompleto: ['', [Validators.required, Validators.minLength(4)]],
                 email: ['', [Validators.required, Validators.email]],
                 password: ['', [Validators.required, Validators.minLength(8)]],
+                sexo: ['', Validators.required],
+                dataNascimento: ['', Validators.required]
             });
         }
 

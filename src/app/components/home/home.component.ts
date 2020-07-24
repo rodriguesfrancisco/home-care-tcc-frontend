@@ -13,10 +13,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-    user: User = {
-        nomeCompleto: '',
-        roles: null
-    };
+    user: User;
 
     constructor(private http: HttpClient, private authService: AuthService) { }
 

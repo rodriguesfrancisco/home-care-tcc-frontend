@@ -11,6 +11,15 @@ export class UserFormComponent implements OnInit {
     @Input()
     parentForm: FormGroup;
 
+    @Input()
+    minDate: Date;
+
+    @Input()
+    maxDate: Date;
+
+    @Input()
+    sexos: {};
+
     constructor() { }
 
     ngOnInit(): void {

@@ -18,10 +18,11 @@
             <br>
         </mat-radio-group>
 
-        <app-responsavel-form [parentForm]="registerForm" *ngIf="registerForm.value.isResponsavel == 'true'">
+        <app-responsavel-form [parentForm]="registerForm" *ngIf="registerForm.value.isResponsavel == 'true'"
+            [sexos]="sexos" [maxDate]="maxDate" [minDate]="minDate">
         </app-responsavel-form>
 
-        <app-user-form [parentForm]="registerForm"
+        <app-user-form [parentForm]="registerForm" [maxDate]="maxDate" [minDate]="minDate" [sexos]="sexos"
             *ngIf="registerForm.value.isResponsavel == 'false' || registerForm.value.role == 'ROLE_USER_PROFISSIONAL'">
         </app-user-form>
 

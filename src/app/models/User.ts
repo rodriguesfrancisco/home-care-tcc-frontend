@@ -3,5 +3,7 @@ export interface User {
     email?: string;
     password?: string;
     roles: string[];
+    sexo: string;
+    dataNascimento: Date;
     paciente?: User;
 }

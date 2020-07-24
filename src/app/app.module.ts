@@ -16,6 +16,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ResponsavelFormComponent } from './components/responsavel-form/responsavel-form.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
+import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { TextMaskModule } from 'angular2-text-mask';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -43,10 +45,12 @@ const routes: Routes = [
         ReactiveFormsModule,
         AngularMaterialModule,
         BrowserAnimationsModule,
+        MatNativeDateModule,
     ],
     providers: [
         AppService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
     ],
     bootstrap: [AppComponent]
 })

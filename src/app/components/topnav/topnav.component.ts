@@ -16,7 +16,6 @@ export class TopnavComponent implements OnInit {
     constructor(private router: Router, private authService: AuthService) {
         router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
-                console.log(event.url);
                 this.currentUrl = event.url;
             }
         })
