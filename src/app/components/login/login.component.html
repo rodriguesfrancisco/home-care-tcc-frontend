@@ -1,18 +1,18 @@
 <form [formGroup]="loginForm">
-    <div class="container">
-        <h1>Faça o login</h1>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Digite seu email" formControlName="email">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-            <mat-label>Senha</mat-label>
-            <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
-        </mat-form-field>
-        <br>
-        <button mat-raised-button color="primary" (click)="login()">Login</button>
-        <p>Ainda não tem uma conta?</p>
-        <a href="/register">Registre-se aqui.</a>
-    </div>
+  <div class="container">
+    <h1>Faça o login</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Digite seu email" formControlName="email">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <p>Ainda não tem uma conta?</p>
+    <button class="register-button" (click)="redirectToRegisterPage()">Registre-se aqui.</button>
+  </div>
 </form>
