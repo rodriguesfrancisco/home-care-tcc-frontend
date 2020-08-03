@@ -56,9 +56,7 @@ export class RegisterComponent implements OnInit {
           password,
           dataNascimento,
           sexo,
-          nomeCompletoPaciente,
-          dataNascimentoPaciente,
-          sexoPaciente
+          paciente
         } = this.registerForm.value;
         userRegister = {
           nomeCompleto,
@@ -67,12 +65,7 @@ export class RegisterComponent implements OnInit {
           dataNascimento,
           sexo,
           roles: ['ROLE_USER_RESPONSAVEL'],
-          paciente: {
-            nomeCompleto: nomeCompletoPaciente,
-            roles: ['ROLE_USER_PACIENTE'],
-            sexo: sexoPaciente,
-            dataNascimento: dataNascimentoPaciente
-          }
+          paciente
         };
       } else {
         const {
@@ -81,6 +74,7 @@ export class RegisterComponent implements OnInit {
           password,
           sexo,
           dataNascimento,
+          endereco,
           role
         } = this.registerForm.value;
         userRegister = {
@@ -89,6 +83,7 @@ export class RegisterComponent implements OnInit {
           password,
           dataNascimento,
           sexo,
+          endereco,
           roles: [role]
         };
       }
@@ -110,18 +105,25 @@ export class RegisterComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         sexo: ['', Validators.required],
-        dataNascimento: ['', Validators.required]
-      })
+        dataNascimento: ['', Validators.required],
+        endereco: this.formBuider.group({
+          cep: ['', Validators.required],
+          endereco: ['', Validators.required],
+          numero: ['', Validators.required],
+          cidade: ['', Validators.required],
+          uf: ['', Validators.required],
+        })
+      });
     } else {
       this.registerForm = this.formBuider.group({
         role: [event.value, Validators.required],
         isResponsavel: ['', Validators.required]
-      })
+      });
     }
   }
 
   isResponsavelEventListener(event: MatRadioChange) {
-    if (event.value == 'true') {
+    if (this.isResponsavel(event)) {
       this.registerForm = this.formBuider.group({
         role: [this.registerForm.value['role'], Validators.required],
         isResponsavel: ['true', Validators.required],
@@ -130,9 +132,18 @@ export class RegisterComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(8)]],
         sexo: ['', Validators.required],
         dataNascimento: ['', Validators.required],
-        nomeCompletoPaciente: ['', [Validators.required, Validators.minLength(4)]],
-        sexoPaciente: ['', Validators.required],
-        dataNascimentoPaciente: ['', Validators.required],
+        paciente: this.formBuider.group({
+          nomeCompleto: ['', [Validators.required, Validators.minLength(4)]],
+          sexo: ['', Validators.required],
+          dataNascimento: ['', Validators.required],
+          endereco: this.formBuider.group({
+            cep: ['', Validators.required],
+            endereco: ['', Validators.required],
+            numero: ['', Validators.required],
+            cidade: ['', Validators.required],
+            uf: ['', Validators.required],
+          })
+        })
       });
     } else {
       this.registerForm = this.formBuider.group({
@@ -142,10 +153,20 @@ export class RegisterComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         sexo: ['', Validators.required],
-        dataNascimento: ['', Validators.required]
+        dataNascimento: ['', Validators.required],
+        endereco: this.formBuider.group({
+          cep: ['', Validators.required],
+          endereco: ['', Validators.required],
+          numero: ['', Validators.required],
+          cidade: ['', Validators.required],
+          uf: ['', Validators.required],
+        })
       });
     }
+  }
 
+  private isResponsavel(event: MatRadioChange) {
+    return event.value == 'true';
   }
 
   ngOnInit(): void {
