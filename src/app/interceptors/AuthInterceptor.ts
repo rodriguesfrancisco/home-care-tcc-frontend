@@ -7,37 +7,36 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) {
+  constructor(private router: Router) {
 
+  }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    if (req.headers.get('skip')) {
+      return next.handle(req);
     }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
 
-        if (req.headers.get('skip')) {
-            console.log('interception skipped');
-            return next.handle(req);
-        }
+    if (token) {
+      const cloned = req.clone({
+        headers: req.headers.set('Authorization', 'Bearer ' + token)
+      });
 
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            const cloned = req.clone({
-                headers: req.headers.set('Authorization', 'Bearer ' + token)
-            });
-
-            return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
-                if (err instanceof HttpErrorResponse) {
-                    if (err.status === 401) {
-                        localStorage.clear();
-                        this.router.navigateByUrl('/login');
-                    }
-                }
-            }));
-        } else {
+      return next.handle(cloned).pipe(tap(() => { }, (err: any) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
             localStorage.clear();
             this.router.navigateByUrl('/login');
-            return next.handle(req);
+          }
         }
+      }));
+    } else {
+      localStorage.clear();
+      this.router.navigateByUrl('/login');
+      return next.handle(req);
     }
+  }
 
 }

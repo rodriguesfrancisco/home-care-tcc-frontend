@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
     const token = localStorage.getItem('token');
     if (token) {
-      http.get<User>(`${environment.api}/auth/me`).subscribe(() => {
-        router.navigateByUrl('/home');
+      http.get<User>(`${environment.api}/auth/me`).subscribe((user) => {
+        router.navigateByUrl(this.getRouteToNavigate(user.roles));
       });
     }
   }
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
-      this.authService.login(email, password).subscribe(() => {
-        this.router.navigateByUrl('/home');
+      this.authService.login(email, password).subscribe((userToken) => {
+        this.router.navigateByUrl(this.getRouteToNavigate(userToken.roles));
       }, (error) => {
         this.snackBar.open(error.error, null, { duration: 5000, verticalPosition: 'top' });
       });
@@ -53,6 +53,13 @@ export class LoginComponent implements OnInit {
 
   private validationErrors() {
     console.log(getFormValidationErrors(this.loginForm));
+  }
+
+  private getRouteToNavigate(roles: string[]) {
+    if (roles.includes('ROLE_USER_PACIENTE') || roles.includes('ROLE_USER_RESPONSAVEL')) {
+      return '/home/paciente';
+    }
+    return '/home/profissional';
   }
 
   ngOnInit(): void {

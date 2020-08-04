@@ -7,7 +7,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
@@ -17,23 +16,27 @@ import { ResponsavelFormComponent } from './components/register/responsavel-form
 import { UserFormComponent } from './components/register/user-form/user-form.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { PacienteHomeComponent } from './components/home/paciente-home/paciente-home.component';
+import { ProfissionalHomeComponent } from './components/home/profissional-home/profissional-home.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'home/paciente', pathMatch: 'full', component: PacienteHomeComponent },
+  { path: 'home/profissional', pathMatch: 'full', component: ProfissionalHomeComponent },
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     ResponsavelFormComponent,
     UserFormComponent,
-    TopnavComponent
+    TopnavComponent,
+    PacienteHomeComponent,
+    ProfissionalHomeComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

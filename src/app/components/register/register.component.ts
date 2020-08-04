@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
           sexo,
           paciente
         } = this.registerForm.value;
+
         userRegister = {
           nomeCompleto,
           email,
@@ -77,6 +78,7 @@ export class RegisterComponent implements OnInit {
           endereco,
           role
         } = this.registerForm.value;
+
         userRegister = {
           nomeCompleto,
           email,
