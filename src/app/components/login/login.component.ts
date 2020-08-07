@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
+  loading = false;
+
   constructor(http: HttpClient, private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,12 +37,19 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
+      this.loading = true;
+      setTimeout(() => {
 
-      this.authService.login(email, password).subscribe((userToken) => {
-        this.router.navigateByUrl(this.getRouteToNavigate(userToken.roles));
-      }, (error) => {
-        this.snackBar.open(error.error, null, { duration: 5000, verticalPosition: 'top' });
-      });
+        this.authService.login(email, password).subscribe((userToken) => {
+          this.loading = false;
+          this.router.navigateByUrl(this.getRouteToNavigate(userToken.roles));
+        }, (error) => {
+          this.loading = false;
+          const errorMessage = error.error instanceof ProgressEvent ? 'Erro no servidor, tente novamente mais tarde!' : error.error;
+          this.snackBar.open(errorMessage, null, { duration: 5000, verticalPosition: 'top' });
+        });
+
+      }, 5000);
     } else {
       this.validationErrors();
     }

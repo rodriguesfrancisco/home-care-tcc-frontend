@@ -11,7 +11,10 @@
       <input matInput placeholder="Digite sua senha" formControlName="password" type="password">
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <button mat-raised-button color="primary" (click)="login()">
+      <div *ngIf="!loading">Login</div>
+      <mat-spinner *ngIf="loading" diameter="35" color="accent" style="margin: 0 auto;"></mat-spinner>
+    </button>
     <p>Ainda não tem uma conta?</p>
     <button class="register-button" (click)="redirectToRegisterPage()">Registre-se aqui.</button>
   </div>

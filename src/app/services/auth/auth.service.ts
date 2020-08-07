@@ -31,6 +31,7 @@ export class AuthService {
 
   private setSession(authResult: JWTToken) {
     localStorage.setItem('token', authResult.token);
+    localStorage.setItem('id', String(authResult.id));
     localStorage.setItem('expires_at', new Date(authResult.expireDate).getTime().toString());
   }
 
