@@ -38,18 +38,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.loading = true;
-      setTimeout(() => {
 
-        this.authService.login(email, password).subscribe((userToken) => {
-          this.loading = false;
-          this.router.navigateByUrl(this.getRouteToNavigate(userToken.roles));
-        }, (error) => {
-          this.loading = false;
-          const errorMessage = error.error instanceof ProgressEvent ? 'Erro no servidor, tente novamente mais tarde!' : error.error;
-          this.snackBar.open(errorMessage, null, { duration: 5000, verticalPosition: 'top' });
-        });
-
-      }, 5000);
+      this.authService.login(email, password).subscribe((userToken) => {
+        this.loading = false;
+        this.router.navigateByUrl(this.getRouteToNavigate(userToken.roles));
+      }, (error) => {
+        this.loading = false;
+        const errorMessage = error.error instanceof ProgressEvent ? 'Erro no servidor, tente novamente mais tarde!' : error.error;
+        this.snackBar.open(errorMessage, null, { duration: 5000, verticalPosition: 'top' });
+      });
     } else {
       this.validationErrors();
     }

@@ -18,6 +18,7 @@ import { TopnavComponent } from './components/topnav/topnav.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PacienteHomeComponent } from './components/home/paciente-home/paciente-home.component';
 import { ProfissionalHomeComponent } from './components/home/profissional-home/profissional-home.component';
+import { SolicitacaoFormComponent } from './components/home/paciente-home/solicitacao-form/solicitacao-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home/paciente', pathMatch: 'full', component: PacienteHomeComponent },
   { path: 'home/profissional', pathMatch: 'full', component: ProfissionalHomeComponent },
+  { path: 'home/paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
 ]
 
 @NgModule({
@@ -36,7 +38,8 @@ const routes: Routes = [
     UserFormComponent,
     TopnavComponent,
     PacienteHomeComponent,
-    ProfissionalHomeComponent
+    ProfissionalHomeComponent,
+    SolicitacaoFormComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

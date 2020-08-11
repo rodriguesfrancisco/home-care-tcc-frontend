@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Solicitacao } from 'src/app/models/Solicitacao';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paciente-home',
@@ -12,7 +13,7 @@ export class PacienteHomeComponent implements OnInit {
 
   solicitacao: Solicitacao;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     const userId = localStorage.getItem('id');
@@ -20,6 +21,10 @@ export class PacienteHomeComponent implements OnInit {
       .subscribe((solicitacao) => {
         this.solicitacao = solicitacao;
       });
+  }
+
+  routeToFormSolicitacao() {
+    this.router.navigateByUrl('/home/paciente/form-solicitacao');
   }
 
 }

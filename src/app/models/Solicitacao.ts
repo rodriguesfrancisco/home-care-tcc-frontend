@@ -1,5 +1,5 @@
 export interface Solicitacao {
-  id: number;
+  id?: number;
   titulo: string;
   informacoes: string;
   dataSolicitacao: Date;

@@ -1,0 +1,14 @@
+<form [formGroup]="solicitacaoForm">
+  <p>Preencha as informações da solicitação:</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Título</mat-label>
+    <input matInput placeholder="Digite o título" formControlName="titulo">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Informações</mat-label>
+    <input matInput placeholder="Digite as informações da solicitação" formControlName="informacoes">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="cadastrarSolicitacao()">Cadastrar Solicitação</button>
+</form>
