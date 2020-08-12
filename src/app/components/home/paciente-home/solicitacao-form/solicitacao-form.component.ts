@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { Solicitacao } from 'src/app/models/Solicitacao';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-solicitacao-form',
@@ -12,7 +14,7 @@ export class SolicitacaoFormComponent implements OnInit {
 
   solicitacaoForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder, private solicitacaoService: SolicitacaoService) {
+  constructor(formBuilder: FormBuilder, private solicitacaoService: SolicitacaoService, private router: Router, private snackBar: MatSnackBar) {
     this.solicitacaoForm = formBuilder.group({
       titulo: ['', Validators.required],
       informacoes: ['', Validators.required]
@@ -32,7 +34,13 @@ export class SolicitacaoFormComponent implements OnInit {
         statusSolicitacao: 'EM_ABERTO'
       };
 
-      this.solicitacaoService.cadastrarSolicitacao(solicitacao);
+      this.solicitacaoService.cadastrarSolicitacao(solicitacao)
+        .subscribe((response) => {
+          if (response['status'] === 201) {
+            this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
+            this.router.navigateByUrl('/home/paciente');
+          }
+        });
     }
   }
 

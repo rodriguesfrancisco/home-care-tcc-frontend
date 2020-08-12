@@ -91,6 +91,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   providers: [
 

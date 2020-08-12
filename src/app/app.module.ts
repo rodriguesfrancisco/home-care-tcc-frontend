@@ -19,6 +19,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PacienteHomeComponent } from './components/home/paciente-home/paciente-home.component';
 import { ProfissionalHomeComponent } from './components/home/profissional-home/profissional-home.component';
 import { SolicitacaoFormComponent } from './components/home/paciente-home/solicitacao-form/solicitacao-form.component';
+import { DialogContentComponent } from './utils/dialog-content/dialog-content-component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -39,7 +40,8 @@ const routes: Routes = [
     TopnavComponent,
     PacienteHomeComponent,
     ProfissionalHomeComponent,
-    SolicitacaoFormComponent
+    SolicitacaoFormComponent,
+    DialogContentComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

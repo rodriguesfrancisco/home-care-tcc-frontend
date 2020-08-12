@@ -11,8 +11,12 @@ export class SolicitacaoService {
   constructor(private http: HttpClient) { }
 
   cadastrarSolicitacao(solicitacao: Solicitacao) {
-    console.log(solicitacao);
     const userId = localStorage.getItem('id');
-    this.http.post(`${environment.api}/users/${userId}/solicitacoes`, solicitacao).subscribe((res) => { });
+    return this.http.post(`${environment.api}/users/${userId}/solicitacoes`, solicitacao);
+  }
+
+  excluirSolicitacao(idSolicitacao: number) {
+    const userId = localStorage.getItem('id');
+    return this.http.delete(`${environment.api}/users/${userId}/solicitacoes/${idSolicitacao}`);
   }
 }

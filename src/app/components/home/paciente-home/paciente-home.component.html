@@ -8,7 +8,7 @@
     <p>Acompanhe a sua solicitação:</p>
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ solicitacao.titulo}}</mat-card-title>
+        <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
         <mat-card-subtitle>{{ solicitacao.statusSolicitacao }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
@@ -16,6 +16,16 @@
           {{solicitacao.informacoes}}
         </p>
       </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>
+          <mat-icon>edit</mat-icon>
+          Editar
+        </button>
+        <button mat-button color="warn" (click)="abrirModalConfirmarExclusao(solicitacao.id)">
+          <mat-icon>delete</mat-icon>
+          Excluir
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
