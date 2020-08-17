@@ -10,5 +10,7 @@
     <input matInput placeholder="Digite as informações da solicitação" formControlName="informacoes">
   </mat-form-field>
   <br>
-  <button mat-raised-button color="primary" (click)="cadastrarSolicitacao()">Cadastrar Solicitação</button>
+  <button mat-raised-button color="primary" (click)="cadastrarSolicitacao()">
+    {{ passedSolicitacao ? 'Editar Solicitação' : 'Cadastrar Solicitação' }}
+  </button>
 </form>

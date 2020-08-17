@@ -25,9 +25,9 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home/paciente', pathMatch: 'full', component: PacienteHomeComponent },
+  { path: 'paciente/home', pathMatch: 'full', component: PacienteHomeComponent },
+  { path: 'paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
   { path: 'home/profissional', pathMatch: 'full', component: ProfissionalHomeComponent },
-  { path: 'home/paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
 ]
 
 @NgModule({

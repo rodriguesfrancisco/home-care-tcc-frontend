@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   private getRouteToNavigate(roles: string[]) {
     if (roles.includes('ROLE_USER_PACIENTE') || roles.includes('ROLE_USER_RESPONSAVEL')) {
-      return '/home/paciente';
+      return '/paciente/home';
     }
     return '/home/profissional';
   }

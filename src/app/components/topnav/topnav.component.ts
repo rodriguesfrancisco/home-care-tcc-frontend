@@ -30,6 +30,11 @@ export class TopnavComponent implements OnInit {
     return this.excludedLogoutRoutes.find(route => route === this.currentUrl);
   }
 
+  routeToHome() {
+    const roleByUrl = this.currentUrl.slice(1, this.currentUrl.length).split('/')[0];
+    this.router.navigateByUrl(`/${roleByUrl}/home`);
+  }
+
   ngOnInit(): void {
   }
 

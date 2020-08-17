@@ -49,7 +49,7 @@ export class SolicitacaoFormComponent implements OnInit {
           .subscribe((response) => {
             if (response['status'] === 200) {
               this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
-              this.router.navigateByUrl('/home/paciente');
+              this.router.navigateByUrl('/paciente/home');
             }
           });
       } else {
@@ -64,7 +64,7 @@ export class SolicitacaoFormComponent implements OnInit {
           .subscribe((response) => {
             if (response['status'] === 201) {
               this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
-              this.router.navigateByUrl('/home/paciente');
+              this.router.navigateByUrl('/paciente/home');
             }
           });
       }

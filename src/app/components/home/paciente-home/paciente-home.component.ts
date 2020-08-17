@@ -29,7 +29,7 @@ export class PacienteHomeComponent implements OnInit {
   }
 
   routeToFormSolicitacao() {
-    this.router.navigateByUrl('/home/paciente/form-solicitacao');
+    this.router.navigateByUrl('/paciente/form-solicitacao');
   }
 
   private carregarSolicitacao() {
@@ -56,7 +56,7 @@ export class PacienteHomeComponent implements OnInit {
   }
 
   routeToEditSolicitacao(solicitacao: Solicitacao) {
-    this.router.navigateByUrl('/home/paciente/form-solicitacao', { state: { data: solicitacao } });
+    this.router.navigateByUrl('/paciente/form-solicitacao', { state: { data: solicitacao } });
   }
 
 }

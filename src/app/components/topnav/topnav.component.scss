@@ -1,11 +1,17 @@
 .topnav-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .logout-button {
-    width: 70px;
+  width: 70px;
 }
 
 .logout-button mat-label {
-    margin-right: 5%;
+  margin-right: 5%;
+}
+
+.home-top-nav-button {
+  background: transparent;
+  border: none;
+  color: white;
 }
