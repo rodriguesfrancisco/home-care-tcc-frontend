@@ -4,4 +4,5 @@ export interface Solicitacao {
   informacoes: string;
   dataSolicitacao: Date;
   statusSolicitacao: string;
+  user?: any;
 }

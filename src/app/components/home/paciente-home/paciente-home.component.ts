@@ -55,4 +55,8 @@ export class PacienteHomeComponent implements OnInit {
     });
   }
 
+  routeToEditSolicitacao(solicitacao: Solicitacao) {
+    this.router.navigateByUrl('/home/paciente/form-solicitacao', { state: { data: solicitacao } });
+  }
+
 }

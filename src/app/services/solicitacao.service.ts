@@ -19,4 +19,9 @@ export class SolicitacaoService {
     const userId = localStorage.getItem('id');
     return this.http.delete(`${environment.api}/users/${userId}/solicitacoes/${idSolicitacao}`);
   }
+
+  editarSolicitacao(solicitacao: Solicitacao) {
+    const userId = localStorage.getItem('id');
+    return this.http.put(`${environment.api}/users/${userId}/solicitacoes`, solicitacao);
+  }
 }
