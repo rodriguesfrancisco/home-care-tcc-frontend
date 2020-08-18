@@ -33,3 +33,13 @@ button {
 p {
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .container mat-form-field {
+    width: 90%;
+  }
+}
