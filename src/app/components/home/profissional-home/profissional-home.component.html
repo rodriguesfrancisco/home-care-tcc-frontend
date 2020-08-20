@@ -1,1 +1,32 @@
-<p>profissional-home works!</p>
+<div class="container">
+  <div class="hello-container">
+    <p>Olá {{ profissional.nomeCompleto.split(' ')[0] }}, bem vindo à área do profissional.</p>
+    <p>Visualize as solicitações disponíveis, avalie as que você se encaixa nos requisitos e envie uma proposta para o
+      paciente!</p>
+  </div>
+  <mat-card *ngFor="let solicitacao of solicitacoes">
+    <mat-card-header>
+      <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
+      <mat-card-subtitle>{{ solicitacao.statusSolicitacao }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{solicitacao.informacoes}}
+      </p>
+      <div>
+        <mat-icon>location_on</mat-icon>
+        {{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button>
+        <mat-icon>message</mat-icon>
+        Enviar uma Mensagem
+      </button>
+      <button mat-button>
+        <mat-icon>request_page</mat-icon>
+        Enviar uma Solicitação
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

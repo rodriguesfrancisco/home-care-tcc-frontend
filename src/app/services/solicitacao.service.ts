@@ -10,6 +10,10 @@ export class SolicitacaoService {
 
   constructor(private http: HttpClient) { }
 
+  listarSolicitacoes() {
+    return this.http.get<Solicitacao[]>(`${environment.api}/solicitacoes`);
+  }
+
   cadastrarSolicitacao(solicitacao: Solicitacao) {
     const userId = localStorage.getItem('id');
     return this.http.post(`${environment.api}/users/${userId}/solicitacoes`, solicitacao);
