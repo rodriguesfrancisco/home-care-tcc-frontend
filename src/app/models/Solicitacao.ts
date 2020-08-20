@@ -4,5 +4,7 @@ export interface Solicitacao {
   informacoes: string;
   dataSolicitacao: Date;
   statusSolicitacao: string;
+  valorAproximadoSolicitacao: Number;
+  preferenciaSexoProfissional: string;
   user?: any;
 }

@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'paciente/home', pathMatch: 'full', component: PacienteHomeComponent },
   { path: 'paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
-  { path: 'home/profissional', pathMatch: 'full', component: ProfissionalHomeComponent },
+  { path: 'profissional/home', pathMatch: 'full', component: ProfissionalHomeComponent },
 ]
 
 @NgModule({

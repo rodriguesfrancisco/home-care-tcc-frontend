@@ -10,7 +10,23 @@
     <input matInput placeholder="Digite as informações da solicitação" formControlName="informacoes">
   </mat-form-field>
   <br>
-  <button mat-raised-button color="primary" (click)="cadastrarSolicitacao()">
+  <mat-form-field appearance="outline">
+    <mat-label>Valor aproximado para o atendimento</mat-label>
+    <input class="value-field" matInput placeholder="Digite um valor em reais"
+      formControlName="valorAproximadoSolicitacao" type="number">
+    <mat-hint>* O valor da proposta pode vir diferente do seu valor aproximado</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Deseja ser atendido por um profissional do sexo:</mat-label>
+    <mat-select formControlName="preferenciaSexoProfissional">
+      <mat-option value="M">Masculino</mat-option>
+      <mat-option value="F">Feminino</mat-option>
+      <mat-option value="N">Não tenho preferência</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="cadastrarSolicitacao()" [disabled]="!solicitacaoForm.valid">
     {{ passedSolicitacao ? 'Editar Solicitação' : 'Cadastrar Solicitação' }}
   </button>
 </form>

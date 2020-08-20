@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     if (roles.includes('ROLE_USER_PACIENTE') || roles.includes('ROLE_USER_RESPONSAVEL')) {
       return '/paciente/home';
     }
-    return '/home/profissional';
+    return '/profissional/home';
   }
 
   ngOnInit(): void {

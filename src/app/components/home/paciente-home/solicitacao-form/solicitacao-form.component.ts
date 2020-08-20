@@ -22,12 +22,16 @@ export class SolicitacaoFormComponent implements OnInit {
       this.passedSolicitacao = state.data;
       this.solicitacaoForm = formBuilder.group({
         titulo: [this.passedSolicitacao.titulo, Validators.required],
-        informacoes: [this.passedSolicitacao.informacoes, Validators.required]
+        informacoes: [this.passedSolicitacao.informacoes, Validators.required],
+        valorAproximadoSolicitacao: [this.passedSolicitacao.valorAproximadoSolicitacao, Validators.required],
+        preferenciaSexoProfissional: [this.passedSolicitacao.preferenciaSexoProfissional, Validators.required]
       });
     } else {
       this.solicitacaoForm = formBuilder.group({
         titulo: ['', Validators.required],
-        informacoes: ['', Validators.required]
+        informacoes: ['', Validators.required],
+        valorAproximadoSolicitacao: ['', Validators.required],
+        preferenciaSexoProfissional: ['', Validators.required]
       });
     }
   }
@@ -37,10 +41,12 @@ export class SolicitacaoFormComponent implements OnInit {
 
   cadastrarSolicitacao() {
     if (this.solicitacaoForm.valid) {
-      const { titulo, informacoes } = this.solicitacaoForm.value;
+      const { titulo, informacoes, valorAproximadoSolicitacao, preferenciaSexoProfissional } = this.solicitacaoForm.value;
       if (this.passedSolicitacao) {
         this.passedSolicitacao.titulo = titulo;
         this.passedSolicitacao.informacoes = informacoes;
+        this.passedSolicitacao.valorAproximadoSolicitacao = valorAproximadoSolicitacao;
+        this.passedSolicitacao.preferenciaSexoProfissional = preferenciaSexoProfissional;
         this.passedSolicitacao.user = {
           id: this.passedSolicitacao.user.id
         };
@@ -56,6 +62,8 @@ export class SolicitacaoFormComponent implements OnInit {
         const solicitacao: Solicitacao = {
           titulo,
           informacoes,
+          valorAproximadoSolicitacao,
+          preferenciaSexoProfissional,
           dataSolicitacao: new Date(),
           statusSolicitacao: 'EM_ABERTO'
         };

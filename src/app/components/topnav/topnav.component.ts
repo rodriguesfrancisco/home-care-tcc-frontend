@@ -32,7 +32,11 @@ export class TopnavComponent implements OnInit {
 
   routeToHome() {
     const roleByUrl = this.currentUrl.slice(1, this.currentUrl.length).split('/')[0];
-    this.router.navigateByUrl(`/${roleByUrl}/home`);
+    if (roleByUrl === 'register' || roleByUrl === 'login') {
+      this.router.navigateByUrl(`/login`);
+    } else {
+      this.router.navigateByUrl(`/${roleByUrl}/home`);
+    }
   }
 
   ngOnInit(): void {

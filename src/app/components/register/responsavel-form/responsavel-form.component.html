@@ -55,7 +55,8 @@
     <div formGroupName="endereco">
       <mat-form-field appearance="outline">
         <mat-label>CEP</mat-label>
-        <input matInput placeholder="Digite o CEP" [formControlName]="'cep'">
+        <input matInput placeholder="Digite o CEP" [formControlName]="'cep'" maxlength="8">
+        <mat-hint align="end">{{parentForm.value.paciente.endereco.cep.length}} / 8</mat-hint>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline">

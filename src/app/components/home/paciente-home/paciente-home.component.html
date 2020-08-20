@@ -15,6 +15,12 @@
         <p>
           {{solicitacao.informacoes}}
         </p>
+        <div>
+          <mat-icon>attach_money</mat-icon>
+          <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
+          <mat-icon>person</mat-icon>
+          <strong>Preferência por profissional do sexo: </strong> {{ solicitacao.preferenciaSexoProfissional }}
+        </div>
       </mat-card-content>
       <mat-card-actions align="end">
         <button mat-button (click)="routeToEditSolicitacao(solicitacao)">
