@@ -15,7 +15,11 @@
       </p>
       <div>
         <mat-icon>location_on</mat-icon>
-        {{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
+        <strong>Localização: </strong>{{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
+        <mat-icon>attach_money</mat-icon>
+        <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
+        <mat-icon>person</mat-icon>
+        <strong>Preferência por profissional do sexo: </strong> {{ solicitacao.preferenciaSexoProfissional }}
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
