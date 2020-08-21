@@ -9,7 +9,7 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
-        <mat-card-subtitle>{{ solicitacao.statusSolicitacao }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ getDescricaoStatusSolicitacao(solicitacao.statusSolicitacao) }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
@@ -19,7 +19,8 @@
           <mat-icon>attach_money</mat-icon>
           <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
           <mat-icon>person</mat-icon>
-          <strong>Preferência por profissional do sexo: </strong> {{ solicitacao.preferenciaSexoProfissional }}
+          <strong>Preferência por profissional do sexo: </strong>
+          {{ getDescricaoSexo(solicitacao.preferenciaSexoProfissional) }}
         </div>
       </mat-card-content>
       <mat-card-actions align="end">

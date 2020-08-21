@@ -4,6 +4,9 @@ import { User } from 'src/app/models/User';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { Solicitacao } from 'src/app/models/Solicitacao';
 
+import statusSolicitacao from '../../../utils/statusSolicitacao';
+import sexoDescricao from 'src/app/utils/sexoDescricao';
+
 @Component({
   selector: 'app-profissional-home',
   templateUrl: './profissional-home.component.html',
@@ -26,6 +29,14 @@ export class ProfissionalHomeComponent implements OnInit {
       .subscribe((solicitacoes) => {
         this.solicitacoes = solicitacoes;
       });
+  }
+
+  getDescricaoStatusSolicitacao(codigoStatus) {
+    return statusSolicitacao[codigoStatus];
+  }
+
+  getDescricaoSexo(codigoSexo) {
+    return sexoDescricao[codigoSexo];
   }
 
 }

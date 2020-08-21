@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogContentComponent } from 'src/app/utils/dialog-content/dialog-content-component';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import statusSolicitacao from 'src/app/utils/statusSolicitacao';
+import sexoDescricao from 'src/app/utils/sexoDescricao';
 
 @Component({
   selector: 'app-paciente-home',
@@ -57,6 +59,14 @@ export class PacienteHomeComponent implements OnInit {
 
   routeToEditSolicitacao(solicitacao: Solicitacao) {
     this.router.navigateByUrl('/paciente/form-solicitacao', { state: { data: solicitacao } });
+  }
+
+  getDescricaoStatusSolicitacao(codigoStatus) {
+    return statusSolicitacao[codigoStatus];
+  }
+
+  getDescricaoSexo(codigoSexo) {
+    return sexoDescricao[codigoSexo];
   }
 
 }
