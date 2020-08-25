@@ -1,0 +1,16 @@
+<form [formGroup]="formMyId">
+  <input type="text" formControlName="myIdForm" placeholder="From Id">
+  <button (click)="registrarId()">Registrar meu ID</button>
+</form>
+
+<form [formGroup]="formMensagem">
+  <input type="text" formControlName="toId" placeholder="To Id">
+  <input type="text" formControlName="mensagem" placeholder="Mensagem">
+  <button (click)="enviarMensagem()">Enviar Mensagem</button>
+</form>
+
+<ul>
+  <li *ngFor="let message of messages">
+    {{message.fromId == myId ? 'Eu enviei: ' + message.message : 'Eu recebi: ' + message.message}}
+  </li>
+</ul>

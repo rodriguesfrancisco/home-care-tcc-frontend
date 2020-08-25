@@ -20,6 +20,9 @@ import { PacienteHomeComponent } from './components/home/paciente-home/paciente-
 import { ProfissionalHomeComponent } from './components/home/profissional-home/profissional-home.component';
 import { SolicitacaoFormComponent } from './components/home/paciente-home/solicitacao-form/solicitacao-form.component';
 import { DialogContentComponent } from './utils/dialog-content/dialog-content-component';
+import { ChatComponent } from './components/chat/chat.component';
+import { RxStompService, InjectableRxStompConfig, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { rxJsStompConfig } from './config/rx-stomp.config';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -28,6 +31,7 @@ const routes: Routes = [
   { path: 'paciente/home', pathMatch: 'full', component: PacienteHomeComponent },
   { path: 'paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
   { path: 'profissional/home', pathMatch: 'full', component: ProfissionalHomeComponent },
+  { path: 'profissional/chat', pathMatch: 'full', component: ChatComponent },
 ]
 
 @NgModule({
@@ -41,7 +45,8 @@ const routes: Routes = [
     PacienteHomeComponent,
     ProfissionalHomeComponent,
     SolicitacaoFormComponent,
-    DialogContentComponent
+    DialogContentComponent,
+    ChatComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -57,7 +62,8 @@ const routes: Routes = [
   providers: [
     AppService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: RxStompService }
   ],
   bootstrap: [AppComponent]
 })
