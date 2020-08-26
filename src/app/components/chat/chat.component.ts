@@ -64,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   enviarMensagem() {
     const { mensagem } = this.formMensagem.value;
-    this.http.post('http://localhost:8080/api/socket/message', { message: mensagem, toId: this.toId, fromId: this.fromId })
+    this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
       .subscribe(res => {
 
       })
