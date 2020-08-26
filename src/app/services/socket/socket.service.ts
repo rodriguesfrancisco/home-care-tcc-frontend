@@ -13,4 +13,8 @@ export class SocketService {
   post(data: Mensagem) {
     return this.http.post<Mensagem>(`${environment.api}/api/socket`, data);
   }
+
+  getMensagens(fromId1: number, fromId2: number) {
+    return this.http.get<Mensagem[]>(`${environment.api}/mensagens/${fromId1}/${fromId2}`);
+  }
 }

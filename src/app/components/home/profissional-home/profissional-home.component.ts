@@ -6,6 +6,7 @@ import { Solicitacao } from 'src/app/models/Solicitacao';
 
 import statusSolicitacao from '../../../utils/statusSolicitacao';
 import sexoDescricao from 'src/app/utils/sexoDescricao';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profissional-home',
@@ -17,7 +18,7 @@ export class ProfissionalHomeComponent implements OnInit {
   profissional: User;
   solicitacoes: Solicitacao[];
 
-  constructor(private authService: AuthService, private solicitacaoService: SolicitacaoService) { }
+  constructor(private authService: AuthService, private solicitacaoService: SolicitacaoService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.me()
@@ -37,6 +38,10 @@ export class ProfissionalHomeComponent implements OnInit {
 
   getDescricaoSexo(codigoSexo) {
     return sexoDescricao[codigoSexo];
+  }
+
+  routeToChatComponent(idPacienteSolicitacao) {
+    this.router.navigateByUrl('/profissional/chat', { state: { toId: idPacienteSolicitacao } })
   }
 
 }

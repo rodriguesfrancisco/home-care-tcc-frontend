@@ -1,7 +1,8 @@
 <div class="container">
   <div class="top-container">
-    <button mat-raised-button color="primary" class="add-solicitation" (click)="routeToFormSolicitacao()">Adicionar uma
-      nova solicitação</button>
+    <button mat-raised-button color="primary" class="add-solicitation" (click)="routeToFormSolicitacao()">
+      Adicionar uma nova solicitação
+    </button>
   </div>
   <mat-divider></mat-divider>
   <div *ngIf="solicitacao">
@@ -24,6 +25,10 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
+        <button mat-button (click)="routeToChatComponent(7)">
+          <mat-icon>edit</mat-icon>
+          Solicitação
+        </button>
         <button mat-button (click)="routeToEditSolicitacao(solicitacao)">
           <mat-icon>edit</mat-icon>
           Editar

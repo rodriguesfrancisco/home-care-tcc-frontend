@@ -8,6 +8,7 @@ import * as SockJS from 'sockjs-client';
 import { HttpClient } from '@angular/common/http';
 import { RxStompService, InjectableRxStompConfig } from '@stomp/ng2-stompjs';
 import { rxJsStompConfig } from 'src/app/config/rx-stomp.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -16,53 +17,57 @@ import { rxJsStompConfig } from 'src/app/config/rx-stomp.config';
 })
 export class ChatComponent implements OnInit {
 
-  formMyId: FormGroup;
   formMensagem: FormGroup;
 
-  myId: number;
-  myToken: string;
+  toId: number;
+  fromId: number;
+  userToken: string;
   messages = [];
 
-  isSocketOpened = false;
+  constructor(
+    private rxStompService: RxStompService,
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private socketService: SocketService,
+    router: Router) {
 
-  constructor(private rxStompService: RxStompService, private http: HttpClient, private formBuilder: FormBuilder) {
-    this.formMyId = formBuilder.group({
-      myIdForm: ['', Validators.required]
-    });
+    this.toId = router.getCurrentNavigation().extras.state.toId;
 
     this.formMensagem = formBuilder.group({
-      mensagem: ['', Validators.required],
-      toId: ['', Validators.required]
+      mensagem: ['', Validators.required]
     });
 
   }
 
   ngOnInit() {
-    this.myToken = localStorage.getItem('token');
-    const config: InjectableRxStompConfig = { ...rxJsStompConfig, connectHeaders: { 'login': this.myToken } };
+    this.userToken = localStorage.getItem('token');
+    this.fromId = Number(localStorage.getItem('id'));
+    const config: InjectableRxStompConfig = { ...rxJsStompConfig, connectHeaders: { 'login': this.userToken } };
     this.rxStompService.configure(config);
     this.rxStompService.activate();
-
-    if (this.rxStompService.connected()) {
-      this.isSocketOpened = true;
-    }
-  }
-
-  registrarId() {
-    this.myId = this.formMyId.value.myIdForm;
-    this.rxStompService.watch(`/status-processor/${this.myId}`, { 'login': this.myToken }).subscribe((message) => {
-      this.isSocketOpened = true;
+    this.rxStompService.watch(`/status-processor/${this.fromId}`, { 'login': this.userToken }).subscribe((message) => {
       this.messages.push(JSON.parse(message.body));
       console.log(this.messages);
     });
+    this.socketService.getMensagens(this.fromId, this.toId)
+      .subscribe((mensagens) => {
+        mensagens.forEach(mensagem => {
+          this.messages.push(mensagem);
+        });
+        console.log(this.messages);
+      });
   }
 
   enviarMensagem() {
-    const { mensagem, toId } = this.formMensagem.value;
-    this.http.post('http://localhost:8080/api/socket/message', { message: mensagem, toId, fromId: this.myId })
+    const { mensagem } = this.formMensagem.value;
+    this.http.post('http://localhost:8080/api/socket/message', { message: mensagem, toId: this.toId, fromId: this.fromId })
       .subscribe(res => {
 
       })
+  }
+
+  checkWebSocketState() {
+    return this.rxStompService.connected();
   }
 
 }

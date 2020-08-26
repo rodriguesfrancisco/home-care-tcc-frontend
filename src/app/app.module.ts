@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'paciente/home', pathMatch: 'full', component: PacienteHomeComponent },
   { path: 'paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
+  { path: 'paciente/chat', pathMatch: 'full', component: ChatComponent },
   { path: 'profissional/home', pathMatch: 'full', component: ProfissionalHomeComponent },
   { path: 'profissional/chat', pathMatch: 'full', component: ChatComponent },
 ]

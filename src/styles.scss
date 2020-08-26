@@ -3,5 +3,9 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mat-radio-button {
-    margin: 1% 2%;
+  margin: 1% 2%;
+}
+
+mat-spinner {
+  margin: 2% auto;
 }

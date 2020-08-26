@@ -61,6 +61,10 @@ export class PacienteHomeComponent implements OnInit {
     this.router.navigateByUrl('/paciente/form-solicitacao', { state: { data: solicitacao } });
   }
 
+  routeToChatComponent(profissionalId) {
+    this.router.navigateByUrl('/paciente/chat', { state: { toId: profissionalId } })
+  }
+
   getDescricaoStatusSolicitacao(codigoStatus) {
     return statusSolicitacao[codigoStatus];
   }

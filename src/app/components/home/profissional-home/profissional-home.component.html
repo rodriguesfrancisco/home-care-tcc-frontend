@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="hello-container">
+  <div class="hello-container" *ngIf="profissional">
     <p>Olá {{ profissional.nomeCompleto.split(' ')[0] }}, bem vindo à área do profissional.</p>
     <p>Visualize as solicitações disponíveis, avalie as que você se encaixa nos requisitos e envie uma proposta para o
       paciente!</p>
   </div>
+  <mat-spinner *ngIf="!profissional"></mat-spinner>
   <mat-card *ngFor="let solicitacao of solicitacoes">
     <mat-card-header>
       <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
@@ -24,7 +25,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-button>
+      <button mat-button (click)="routeToChatComponent(solicitacao.user.id)">
         <mat-icon>message</mat-icon>
         Enviar uma Mensagem
       </button>
@@ -34,4 +35,5 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  <mat-spinner *ngIf="!solicitacoes"></mat-spinner>
 </div>
