@@ -14,11 +14,7 @@ export class TopnavComponent implements OnInit {
   excludedLogoutRoutes = ['/login', '/register'];
 
   constructor(private router: Router, private authService: AuthService) {
-    router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.currentUrl = event.url;
-      }
-    });
+
   }
 
   logout() {
@@ -27,7 +23,8 @@ export class TopnavComponent implements OnInit {
   }
 
   checkExcludedLogoutRoutes() {
-    return this.excludedLogoutRoutes.find(route => route === this.currentUrl);
+    console.log(this.excludedLogoutRoutes.includes(this.currentUrl));
+    return this.excludedLogoutRoutes.includes(this.currentUrl);
   }
 
   routeToHome() {
@@ -40,6 +37,11 @@ export class TopnavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.urlAfterRedirects;
+      }
+    });
   }
 
 }
