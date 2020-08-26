@@ -23,7 +23,6 @@ export class TopnavComponent implements OnInit {
   }
 
   checkExcludedLogoutRoutes() {
-    console.log(this.excludedLogoutRoutes.includes(this.currentUrl));
     return this.excludedLogoutRoutes.includes(this.currentUrl);
   }
 

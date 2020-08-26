@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SocketService } from 'src/app/services/socket/socket.service';
@@ -15,7 +15,9 @@ import { Router } from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
+
+  @ViewChild('scrollMe') private scrollContainer: ElementRef;
 
   formMensagem: FormGroup;
 
@@ -23,6 +25,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   fromId: number;
   userToken: string;
   messages = [];
+
+  enviandoMensagem = false;
 
   constructor(
     private rxStompService: RxStompService,
@@ -47,14 +51,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.rxStompService.activate();
     this.rxStompService.watch(`/status-processor/${this.fromId}`, { 'login': this.userToken }).subscribe((message) => {
       this.messages.push(JSON.parse(message.body));
-      console.log(this.messages);
     });
     this.socketService.getMensagens(this.fromId, this.toId)
       .subscribe((mensagens) => {
         mensagens.forEach(mensagem => {
           this.messages.push(mensagem);
         });
-        console.log(this.messages);
+        this.scrollToBottom();
       });
   }
 
@@ -62,16 +65,29 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.rxStompService.deactivate();
   }
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
   enviarMensagem() {
     const { mensagem } = this.formMensagem.value;
-    this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
-      .subscribe(res => {
-
-      })
+    this.enviandoMensagem = true;
+    setTimeout(() => {
+      this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
+        .subscribe(res => {
+          this.enviandoMensagem = false;
+        })
+    }, 2000);
   }
 
   checkWebSocketState() {
     return this.rxStompService.connected();
+  }
+
+  private scrollToBottom() {
+    try {
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
 }

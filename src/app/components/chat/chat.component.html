@@ -1,15 +1,23 @@
 <mat-spinner *ngIf="!checkWebSocketState()"></mat-spinner>
 
-<div>
-  <form [formGroup]="formMensagem">
-    <input type="text" formControlName="mensagem" placeholder="Mensagem">
-    <button (click)="enviarMensagem()">Enviar Mensagem</button>
-  </form>
+<div class="chat-container">
+  <div class="messages-container">
+    <ol #scrollMe>
+      <li *ngFor="let message of messages" [ngClass]="message.fromId == fromId ? 'message-sent' : 'message-received'">
+        <div class="message-container">
+          {{message.message}}
+        </div>
+      </li>
+    </ol>
+  </div>
 
-  <ul>
-    <li *ngFor="let message of messages">
-      {{message.fromId == fromId ? 'Eu enviei: ' + message.message : 'Eu recebi: ' + message.message}}
-    </li>
-  </ul>
-
+  <div class="send-message-container">
+    <form [formGroup]="formMensagem">
+      <mat-form-field appearance="outline">
+        <mat-label>Digite aqui sua mensagem</mat-label>
+        <input matInput type="text" formControlName="mensagem">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="enviarMensagem()" [disabled]="enviandoMensagem">Enviar</button>
+    </form>
+  </div>
 </div>

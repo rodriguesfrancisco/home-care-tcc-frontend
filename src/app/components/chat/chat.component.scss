@@ -1,0 +1,76 @@
+.chat-container {
+  height: 84vh;
+  margin-top: 2%;
+  width: 50vw;
+  margin: 2% auto;
+  -webkit-box-shadow: 0px 0px 21px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 21px -13px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 21px -13px rgba(0,0,0,0.75);
+  border-radius: 10px;
+}
+
+.messages-container {
+  height: 90%;
+}
+
+.send-message-container {
+  height: 10%;
+}
+
+.messages-container > ol {
+  padding: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 98%;
+}
+
+.messages-container > ol li {
+  list-style: none;
+  padding: 1%;
+}
+.messages-container > ol li .message-container {
+  display: inline-block;
+  background: #3f51b5;
+  color: white;
+  padding: 2%;
+  font-size: 15px;
+  min-width: 10%;
+  text-align: justify;
+}
+
+.message-sent, .message-received {
+  width: 65%;
+  display: inline-block;  
+}
+
+.message-sent {
+  text-align: end;
+  margin-left: 35%;
+}
+
+.message-sent .message-container {
+  border-radius: 20px 20px 0px 20px;
+}
+
+.message-received .message-container {
+  border-radius: 20px 20px 20px 0px;
+}
+
+.message-received {
+  text-align: start;
+  margin-right: 35%;
+}
+
+.send-message-container button {
+  width: 14%;
+}
+
+.send-message-container form {
+  height: 100%;
+}
+
+mat-form-field {
+  width: 80%;
+  margin: 0 2%;
+  height: 100%;
+}
