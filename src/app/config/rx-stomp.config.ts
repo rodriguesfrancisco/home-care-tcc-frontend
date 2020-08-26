@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 const token = localStorage.getItem('token');
 
 export const rxJsStompConfig: InjectableRxStompConfig = {
-  brokerURL: `${environment.wsApi}/socket`,
+  brokerURL: environment.wsApi,
   heartbeatIncoming: 0,
   heartbeatOutgoing: 20000,
   reconnectDelay: 20000,
