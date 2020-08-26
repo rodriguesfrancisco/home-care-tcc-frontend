@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SocketService } from 'src/app/services/socket/socket.service';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
   formMensagem: FormGroup;
 
@@ -56,6 +56,10 @@ export class ChatComponent implements OnInit {
         });
         console.log(this.messages);
       });
+  }
+
+  ngOnDestroy() {
+    this.rxStompService.deactivate();
   }
 
   enviarMensagem() {
