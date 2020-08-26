@@ -15,7 +15,7 @@
     <form [formGroup]="formMensagem">
       <mat-form-field appearance="outline">
         <mat-label>Digite aqui sua mensagem</mat-label>
-        <input matInput type="text" formControlName="mensagem">
+        <input matInput type="text" formControlName="mensagem" [disabled]="enviandoMensagem">
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="enviarMensagem()" [disabled]="enviandoMensagem">Enviar</button>
     </form>

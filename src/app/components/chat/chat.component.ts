@@ -76,6 +76,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
         .subscribe(res => {
           this.enviandoMensagem = false;
+          this.formMensagem.reset();
         })
     }, 2000);
   }
