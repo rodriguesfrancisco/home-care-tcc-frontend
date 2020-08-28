@@ -17,4 +17,8 @@ export class SocketService {
   getMensagens(fromId1: number, fromId2: number) {
     return this.http.get<Mensagem[]>(`${environment.api}/mensagens/${fromId1}/${fromId2}`);
   }
+
+  getUsersMensagens(fromId: number, toId: number) {
+    return this.http.get(`${environment.api}/mensagens/user/${fromId}/${toId}`);
+  }
 }

@@ -48,12 +48,10 @@
   margin-left: 35%;
 }
 
-.message-sent .message-container {
-  border-radius: 20px 20px 0px 20px;
-}
-
-.message-received .message-container {
-  border-radius: 20px 20px 20px 0px;
+.message-container .user-name-container {
+  font-size: 11px;
+  color: #DADDD8;
+  text-transform: uppercase;
 }
 
 .message-received {

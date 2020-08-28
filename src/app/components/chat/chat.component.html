@@ -5,6 +5,9 @@
     <ol #scrollMe>
       <li *ngFor="let message of messages" [ngClass]="message.fromId == fromId ? 'message-sent' : 'message-received'">
         <div class="message-container">
+          <div class="user-name-container">
+            {{ message.fromId == fromId ? getChatName(fromUser.nomeCompleto) : getChatName(toUser.nomeCompleto) }}
+          </div>
           {{message.message}}
         </div>
       </li>

@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   fromId: number;
   userToken: string;
   messages = [];
+  fromUser;
+  toUser;
 
   enviandoMensagem = false;
 
@@ -46,18 +48,23 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngOnInit() {
     this.userToken = localStorage.getItem('token');
     this.fromId = Number(localStorage.getItem('id'));
-    const config: InjectableRxStompConfig = { ...rxJsStompConfig, connectHeaders: { 'login': this.userToken } };
-    this.rxStompService.configure(config);
-    this.rxStompService.activate();
-    this.rxStompService.watch(`/status-processor/${this.fromId}`, { 'login': this.userToken }).subscribe((message) => {
-      this.messages.push(JSON.parse(message.body));
-    });
-    this.socketService.getMensagens(this.fromId, this.toId)
-      .subscribe((mensagens) => {
-        mensagens.forEach(mensagem => {
-          this.messages.push(mensagem);
+    this.socketService.getUsersMensagens(this.fromId, this.toId)
+      .subscribe((users) => {
+        this.fromUser = users['fromUser'];
+        this.toUser = users['toUser'];
+        const config: InjectableRxStompConfig = { ...rxJsStompConfig, connectHeaders: { 'login': this.userToken } };
+        this.rxStompService.configure(config);
+        this.rxStompService.activate();
+        this.rxStompService.watch(`/status-processor/${this.fromId}`, { 'login': this.userToken }).subscribe((message) => {
+          this.messages.push(JSON.parse(message.body));
         });
-        this.scrollToBottom();
+        this.socketService.getMensagens(this.fromId, this.toId)
+          .subscribe((mensagens) => {
+            mensagens.forEach(mensagem => {
+              this.messages.push(mensagem);
+            });
+            this.scrollToBottom();
+          });
       });
   }
 
@@ -72,13 +79,13 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   enviarMensagem() {
     const { mensagem } = this.formMensagem.value;
     this.enviandoMensagem = true;
-    setTimeout(() => {
-      this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
-        .subscribe(res => {
-          this.enviandoMensagem = false;
-          this.formMensagem.reset();
-        })
-    }, 2000);
+
+    this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
+      .subscribe(res => {
+        this.enviandoMensagem = false;
+        this.formMensagem.reset();
+      });
+
   }
 
   checkWebSocketState() {
@@ -89,6 +96,19 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     try {
       this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
+  }
+
+  getChatName(fullName: string) {
+    const fullNameSplited = fullName.split(' ');
+    const firstName = fullNameSplited[0];
+    let chatName = firstName;
+    if (fullNameSplited.length != 1) {
+      const lastName = fullNameSplited[fullNameSplited.length - 1];
+      const lastNameFirstLetter = lastName[0];
+      chatName = `${chatName} ${lastNameFirstLetter}`;
+    }
+
+    return chatName;
   }
 
 }
