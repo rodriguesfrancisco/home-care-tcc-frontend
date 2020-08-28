@@ -57,6 +57,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.rxStompService.activate();
         this.rxStompService.watch(`/status-processor/${this.fromId}`, { 'login': this.userToken }).subscribe((message) => {
           this.messages.push(JSON.parse(message.body));
+          console.log(this.messages);
         });
         this.socketService.getMensagens(this.fromId, this.toId)
           .subscribe((mensagens) => {

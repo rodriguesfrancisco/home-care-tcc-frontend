@@ -8,7 +8,12 @@
           <div class="user-name-container">
             {{ message.fromId == fromId ? getChatName(fromUser.nomeCompleto) : getChatName(toUser.nomeCompleto) }}
           </div>
-          {{message.message}}
+          <div class="message-content-container">
+            {{ message.message }}
+          </div>
+          <div class="message-date-container">
+            {{ message.date | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
         </div>
       </li>
     </ol>

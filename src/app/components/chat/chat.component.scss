@@ -48,10 +48,19 @@
   margin-left: 35%;
 }
 
-.message-container .user-name-container {
+.message-container .message-content-container {
+  padding-top: 2%;
+  padding-bottom: 1%;
+}
+
+.message-container .user-name-container, .message-container .message-date-container {
   font-size: 11px;
   color: #DADDD8;
   text-transform: uppercase;
+}
+
+.message-container .message-date-container {
+  text-align: end;
 }
 
 .message-received {
