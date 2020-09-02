@@ -41,7 +41,11 @@ export class ProfissionalHomeComponent implements OnInit {
   }
 
   routeToChatComponent(idPacienteSolicitacao) {
-    this.router.navigateByUrl('/profissional/chat', { state: { toId: idPacienteSolicitacao } })
+    this.router.navigateByUrl('/profissional/chat', { state: { toId: idPacienteSolicitacao } });
+  }
+
+  routeToPropostaComponent(solicitacao: Solicitacao) {
+    this.router.navigateByUrl('/profissional/proposta', { state: { solicitacao } });
   }
 
 }

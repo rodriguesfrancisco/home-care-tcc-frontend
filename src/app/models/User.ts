@@ -1,6 +1,7 @@
 import { Endereco } from './Endereco';
 
 export interface User {
+  id?: number;
   nomeCompleto: string;
   email?: string;
   password?: string;

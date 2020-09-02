@@ -1,0 +1,15 @@
+<form [formGroup]="formProposta">
+  <mat-form-field appearance="outline">
+    <mat-label>Informações</mat-label>
+    <input matInput placeholder="Digite o título" formControlName="informacoes">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Valor da sua proposta</mat-label>
+    <input class="value-field" matInput placeholder="Digite um valor em reais" formControlName="preco" type="number">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="enviarProposta()" [disabled]="!formProposta.valid">
+    Enviar Proposta
+  </button>
+</form>
