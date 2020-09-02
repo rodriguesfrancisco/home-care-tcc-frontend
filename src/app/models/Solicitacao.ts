@@ -1,3 +1,5 @@
+import { Proposta } from './Proposta';
+
 export interface Solicitacao {
   id?: number;
   titulo: string;
@@ -7,4 +9,5 @@ export interface Solicitacao {
   valorAproximadoSolicitacao: Number;
   preferenciaSexoProfissional: string;
   user?: any;
+  propostas?: Proposta[];
 }

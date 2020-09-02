@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Solicitações</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-card *ngFor="let proposta of data.solicitacao.propostas">
+    <mat-card-header>
+      <mat-card-title>{{ proposta.profissional.nomeCompleto }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ proposta.informacoes }}
+      </p>
+      <div>
+        <mat-icon>attach_money</mat-icon>
+        <strong>Preço solicitado pelo profissional: </strong>R${{ proposta.preco.toFixed(2) }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

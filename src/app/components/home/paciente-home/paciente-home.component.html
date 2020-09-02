@@ -25,9 +25,13 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
+        <button mat-button (click)="openSolicitacoesDialog(solicitacao)" matBadge="{{ solicitacao.propostas.length }}">
+          <mat-icon>request_page</mat-icon>
+          Visualizar Solicitações
+        </button>
         <button mat-button (click)="routeToChatComponent(7)">
-          <mat-icon>edit</mat-icon>
-          Solicitação
+          <mat-icon>message</mat-icon>
+          Visualizar Mensagens
         </button>
         <button mat-button (click)="routeToEditSolicitacao(solicitacao)">
           <mat-icon>edit</mat-icon>
