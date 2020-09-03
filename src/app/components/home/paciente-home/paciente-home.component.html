@@ -1,10 +1,9 @@
 <div class="container">
-  <div class="top-container">
+  <div class="top-container" *ngIf="!solicitacao">
     <button mat-raised-button color="primary" class="add-solicitation" (click)="routeToFormSolicitacao()">
       Adicionar uma nova solicitação
     </button>
   </div>
-  <mat-divider></mat-divider>
   <div *ngIf="solicitacao">
     <p>Acompanhe a sua solicitação:</p>
     <mat-card>
@@ -25,7 +24,8 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-button (click)="openSolicitacoesDialog(solicitacao)" matBadge="{{ solicitacao.propostas.length }}">
+        <button mat-button (click)="openSolicitacoesDialog(solicitacao)" matBadge="{{ solicitacao.propostas.length }}"
+          [matBadgeHidden]="solicitacao.propostas.length == 0">
           <mat-icon>request_page</mat-icon>
           Visualizar Solicitações
         </button>

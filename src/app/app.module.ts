@@ -24,7 +24,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { RxStompService, InjectableRxStompConfig, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { rxJsStompConfig } from './config/rx-stomp.config';
 import { PropostaFormComponent } from './components/home/profissional-home/proposta-form/proposta-form.component';
-import { SolicitacoesPageComponent } from './components/home/paciente-home/solicitacoes-page/solicitacoes-page.component';
+import { SolicitacoesDialogComponent } from './components/home/paciente-home/solicitacoes-dialog/solicitacoes-dialog.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -52,7 +52,7 @@ const routes: Routes = [
     DialogContentComponent,
     ChatComponent,
     PropostaFormComponent,
-    SolicitacoesPageComponent
+    SolicitacoesDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

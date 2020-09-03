@@ -10,6 +10,7 @@ mat-spinner {
   margin: 2% auto;
 }
 
-.cdk-overlay-pane {
-  width: 60% !important;
+.cdk-overlay-pane mat-dialog-container {
+  width: 70% !important;
+  margin: 0 auto;
 }

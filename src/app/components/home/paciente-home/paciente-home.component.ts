@@ -9,7 +9,7 @@ import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import statusSolicitacao from 'src/app/utils/statusSolicitacao';
 import sexoDescricao from 'src/app/utils/sexoDescricao';
-import { SolicitacoesPageComponent } from './solicitacoes-page/solicitacoes-page.component';
+import { SolicitacoesDialogComponent } from './solicitacoes-dialog/solicitacoes-dialog.component';
 
 @Component({
   selector: 'app-paciente-home',
@@ -75,7 +75,11 @@ export class PacienteHomeComponent implements OnInit {
   }
 
   openSolicitacoesDialog(solicitacao: Solicitacao) {
-    this.dialog.open(SolicitacoesPageComponent, { data: { solicitacao } });
+    if (solicitacao.propostas.length === 0) {
+      this.snackBar.open('Sua solicitação ainda não recebeu nenhuma proposta.', null, { duration: 5000, verticalPosition: 'top' });
+    } else {
+      this.dialog.open(SolicitacoesDialogComponent, { data: { solicitacao } });
+    }
   }
 
 }

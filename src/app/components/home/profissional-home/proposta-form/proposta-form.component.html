@@ -1,7 +1,9 @@
 <form [formGroup]="formProposta">
   <mat-form-field appearance="outline">
     <mat-label>Informações</mat-label>
-    <input matInput placeholder="Digite o título" formControlName="informacoes">
+    <textarea matInput
+      placeholder="Descreva suas qualificações, suas possibilidades de atendimento, o máximo de informações para que o paciente possa avaliar se você é o profissional correto para este atendimento."
+      formControlName="informacoes" rows="5"></textarea>
   </mat-form-field>
   <br>
   <mat-form-field appearance="outline">
