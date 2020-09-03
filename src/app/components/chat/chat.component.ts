@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   messages = [];
   fromUser;
   toUser;
+  solicitacaoId;
 
   enviandoMensagem = false;
 
@@ -38,6 +39,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     router: Router) {
 
     this.toId = router.getCurrentNavigation().extras.state.toId;
+    this.solicitacaoId = router.getCurrentNavigation().extras.state.solicitacaoId;
 
     this.formMensagem = formBuilder.group({
       mensagem: ['', Validators.required]
@@ -80,8 +82,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   enviarMensagem() {
     const { mensagem } = this.formMensagem.value;
     this.enviandoMensagem = true;
-
-    this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId })
+    const solicitacao = {
+      id: this.solicitacaoId
+    };
+    this.http.post(`${environment.api}/api/socket/message`, { message: mensagem, toId: this.toId, fromId: this.fromId, solicitacao })
       .subscribe(res => {
         this.enviandoMensagem = false;
         this.formMensagem.reset();
