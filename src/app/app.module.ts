@@ -25,6 +25,7 @@ import { RxStompService, InjectableRxStompConfig, rxStompServiceFactory } from '
 import { rxJsStompConfig } from './config/rx-stomp.config';
 import { PropostaFormComponent } from './components/home/profissional-home/proposta-form/proposta-form.component';
 import { SolicitacoesDialogComponent } from './components/home/paciente-home/solicitacoes-dialog/solicitacoes-dialog.component';
+import { ListSolicitacoesComponent } from './components/home/profissional-home/list-solicitacoes/list-solicitacoes.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -52,7 +53,8 @@ const routes: Routes = [
     DialogContentComponent,
     ChatComponent,
     PropostaFormComponent,
-    SolicitacoesDialogComponent
+    SolicitacoesDialogComponent,
+    ListSolicitacoesComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -32,20 +32,4 @@ export class ProfissionalHomeComponent implements OnInit {
       });
   }
 
-  getDescricaoStatusSolicitacao(codigoStatus) {
-    return statusSolicitacao[codigoStatus];
-  }
-
-  getDescricaoSexo(codigoSexo) {
-    return sexoDescricao[codigoSexo];
-  }
-
-  routeToChatComponent(idPacienteSolicitacao) {
-    this.router.navigateByUrl('/profissional/chat', { state: { toId: idPacienteSolicitacao } });
-  }
-
-  routeToPropostaComponent(solicitacao: Solicitacao) {
-    this.router.navigateByUrl('/profissional/proposta', { state: { solicitacao } });
-  }
-
 }

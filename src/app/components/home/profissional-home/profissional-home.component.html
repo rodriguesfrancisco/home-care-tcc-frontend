@@ -4,36 +4,27 @@
     <p>Visualize as solicitações disponíveis, avalie as que você se encaixa nos requisitos e envie uma proposta para o
       paciente!</p>
   </div>
-  <mat-spinner *ngIf="!profissional"></mat-spinner>
-  <mat-card *ngFor="let solicitacao of solicitacoes">
-    <mat-card-header>
-      <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
-      <mat-card-subtitle>{{ getDescricaoStatusSolicitacao(solicitacao.statusSolicitacao) }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{solicitacao.informacoes}}
-      </p>
-      <div>
-        <mat-icon>location_on</mat-icon>
-        <strong>Localização: </strong>{{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
-        <mat-icon>attach_money</mat-icon>
-        <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
-        <mat-icon>person</mat-icon>
-        <strong>Preferência por profissional do sexo: </strong>
-        {{ getDescricaoSexo(solicitacao.preferenciaSexoProfissional) }}
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-button (click)="routeToChatComponent(solicitacao.user.id)">
-        <mat-icon>message</mat-icon>
-        Enviar uma Mensagem
-      </button>
-      <button mat-button (click)="routeToPropostaComponent(solicitacao)">
-        <mat-icon>request_page</mat-icon>
-        Enviar uma Solicitação
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-spinner *ngIf="!solicitacoes"></mat-spinner>
+
+  <mat-tab-group>
+
+    <mat-tab label="Solicitações">
+      <ng-template matTabContent>
+        <app-list-solicitacoes [solicitacoes]="solicitacoes"></app-list-solicitacoes>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Second">
+      <ng-template matTabContent>
+        Content 2 - Loaded:
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Third">
+      <ng-template matTabContent>
+        Content 3 - Loaded:
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
 </div>
