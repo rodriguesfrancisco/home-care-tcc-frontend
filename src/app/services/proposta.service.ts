@@ -13,4 +13,8 @@ export class PropostaService {
   enviarProposta(proposta, userId: number) {
     return this.http.post(`${environment.api}/users/${userId}/propostas`, proposta);
   }
+
+  listarPropostasProfissional(profissionalId: number) {
+    return this.http.get<Proposta[]>(`${environment.api}/users/${profissionalId}/propostas`);
+  }
 }
