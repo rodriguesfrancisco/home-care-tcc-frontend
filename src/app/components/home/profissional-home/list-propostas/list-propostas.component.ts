@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PropostaService } from 'src/app/services/proposta.service';
 import { Proposta } from 'src/app/models/Proposta';
+import sexoDescricao from 'src/app/utils/sexoDescricao';
+import statusSolicitacao from 'src/app/utils/statusSolicitacao';
 
 @Component({
   selector: 'app-list-propostas',
@@ -19,6 +21,14 @@ export class ListPropostasComponent implements OnInit {
       .subscribe((propostas) => {
         this.propostas = propostas;
       });
+  }
+
+  getDescricaoStatusSolicitacao(codigoStatus) {
+    return statusSolicitacao[codigoStatus];
+  }
+
+  getDescricaoSexo(codigoSexo) {
+    return sexoDescricao[codigoSexo];
   }
 
 }
