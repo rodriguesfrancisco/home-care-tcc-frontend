@@ -3,6 +3,7 @@ import { PropostaService } from 'src/app/services/proposta.service';
 import { Proposta } from 'src/app/models/Proposta';
 import sexoDescricao from 'src/app/utils/sexoDescricao';
 import statusSolicitacao from 'src/app/utils/statusSolicitacao';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-propostas',
@@ -13,7 +14,7 @@ export class ListPropostasComponent implements OnInit {
 
   propostas: Proposta[];
 
-  constructor(private propostaService: PropostaService) { }
+  constructor(private propostaService: PropostaService, private router: Router) { }
 
   ngOnInit(): void {
     const profissionalId = Number(localStorage.getItem('id'));
@@ -21,6 +22,10 @@ export class ListPropostasComponent implements OnInit {
       .subscribe((propostas) => {
         this.propostas = propostas;
       });
+  }
+
+  routeToEditPropostaForm(proposta: Proposta) {
+    this.router.navigateByUrl('/profissional/proposta', { state: { proposta } });
   }
 
   getDescricaoStatusSolicitacao(codigoStatus) {

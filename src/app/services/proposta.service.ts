@@ -17,4 +17,8 @@ export class PropostaService {
   listarPropostasProfissional(profissionalId: number) {
     return this.http.get<Proposta[]>(`${environment.api}/users/${profissionalId}/propostas`);
   }
+
+  editarProposta(proposta: Proposta, userId: number) {
+    return this.http.put(`${environment.api}/users/${userId}/propostas`, proposta);
+  }
 }
