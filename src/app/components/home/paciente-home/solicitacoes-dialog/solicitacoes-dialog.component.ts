@@ -16,7 +16,6 @@ export class SolicitacoesDialogComponent implements OnInit {
   }
 
   routeToChatComponent(profissionalId) {
-    console.log('sss ', this.data.solicitacao.id);
     this.router.navigateByUrl('/paciente/chat', { state: { toId: profissionalId, solicitacaoId: this.data.solicitacao.id } })
   }
 

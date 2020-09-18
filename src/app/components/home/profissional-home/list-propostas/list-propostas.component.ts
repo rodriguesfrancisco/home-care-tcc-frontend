@@ -36,4 +36,8 @@ export class ListPropostasComponent implements OnInit {
     return sexoDescricao[codigoSexo];
   }
 
+  routeToChatComponent(idPacienteSolicitacao, solicitacaoId) {
+    this.router.navigateByUrl('/profissional/chat', { state: { toId: idPacienteSolicitacao, solicitacaoId } });
+  }
+
 }

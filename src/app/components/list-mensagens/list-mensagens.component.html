@@ -1,0 +1,17 @@
+<p *ngFor="let mensagem of mensagensAgrupadas.mensagensProfissional"></p>
+<mat-card *ngFor="let mensagem of mensagensAgrupadas.mensagensProfissional">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <mat-card-title>{{ mensagem.profissional.nomeCompleto }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ mensagem.mensagens[0].message }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button>Visualizar mensagens</button>
+  </mat-card-actions>
+</mat-card>

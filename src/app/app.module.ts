@@ -27,6 +27,7 @@ import { PropostaFormComponent } from './components/home/profissional-home/propo
 import { SolicitacoesDialogComponent } from './components/home/paciente-home/solicitacoes-dialog/solicitacoes-dialog.component';
 import { ListSolicitacoesComponent } from './components/home/profissional-home/list-solicitacoes/list-solicitacoes.component';
 import { ListPropostasComponent } from './components/home/profissional-home/list-propostas/list-propostas.component';
+import { ListMensagensComponent } from './components/list-mensagens/list-mensagens.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -56,7 +57,8 @@ const routes: Routes = [
     PropostaFormComponent,
     SolicitacoesDialogComponent,
     ListSolicitacoesComponent,
-    ListPropostasComponent
+    ListPropostasComponent,
+    ListMensagensComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

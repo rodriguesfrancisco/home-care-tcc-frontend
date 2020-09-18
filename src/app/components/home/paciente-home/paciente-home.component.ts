@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import statusSolicitacao from 'src/app/utils/statusSolicitacao';
 import sexoDescricao from 'src/app/utils/sexoDescricao';
 import { SolicitacoesDialogComponent } from './solicitacoes-dialog/solicitacoes-dialog.component';
+import { SocketService } from 'src/app/services/socket/socket.service';
+import { ListMensagensComponent } from '../../list-mensagens/list-mensagens.component';
 
 @Component({
   selector: 'app-paciente-home',
@@ -25,7 +27,8 @@ export class PacienteHomeComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private solicitacaoService: SolicitacaoService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private socketService: SocketService) { }
 
   ngOnInit(): void {
     this.carregarSolicitacao();
@@ -80,6 +83,18 @@ export class PacienteHomeComponent implements OnInit {
     } else {
       this.dialog.open(SolicitacoesDialogComponent, { data: { solicitacao } });
     }
+  }
+
+  openMensagensDialog(solicitacao: Solicitacao) {
+    const userId = Number(localStorage.getItem('id'));
+    this.socketService.getMensagensBySolicitacao(solicitacao.id, userId)
+      .subscribe((mensagens) => {
+        if (mensagens.mensagensProfissional.length === 0) {
+          this.snackBar.open('Sua solicitação ainda não recebeu nenhuma mensagem.', null, { duration: 5000, verticalPosition: 'top' });
+        } else {
+          this.dialog.open(ListMensagensComponent, { data: { mensagens }, minHeight: '60vh', minWidth: '100vw', maxHeight: '100vh', maxWidth: '100vw' });
+        }
+      });
   }
 
 }
