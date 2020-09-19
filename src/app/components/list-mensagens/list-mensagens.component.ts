@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Mensagem } from 'src/app/models/Mensagem';
 import { MensagemDTO } from 'src/app/models/MensagemDTO';
 
@@ -12,12 +13,15 @@ export class ListMensagensComponent implements OnInit {
 
   mensagensAgrupadas: MensagemDTO;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router) {
     this.mensagensAgrupadas = data.mensagens;
-    console.log(this.mensagensAgrupadas);
   }
 
   ngOnInit(): void {
+  }
+
+  routeToChatComponent(idProfissional, solicitacaoId) {
+    this.router.navigateByUrl('/paciente/chat', { state: { toId: idProfissional, solicitacaoId } });
   }
 
 }
