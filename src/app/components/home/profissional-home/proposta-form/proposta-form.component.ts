@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Proposta } from 'src/app/models/Proposta';
 import { PropostaService } from 'src/app/services/proposta.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import statusSolicitacao from 'src/app/utils/statusSolicitacao';
+import sexoDescricao from 'src/app/utils/sexoDescricao';
 
 @Component({
   selector: 'app-proposta-form',
@@ -73,6 +75,14 @@ export class PropostaFormComponent implements OnInit {
       }
 
     }
+  }
+
+  getDescricaoStatusSolicitacao(codigoStatus) {
+    return statusSolicitacao[codigoStatus];
+  }
+
+  getDescricaoSexo(codigoSexo) {
+    return sexoDescricao[codigoSexo];
   }
 
 }
