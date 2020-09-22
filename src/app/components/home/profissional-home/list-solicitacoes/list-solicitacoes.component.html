@@ -8,6 +8,8 @@
       {{solicitacao.informacoes}}
     </p>
     <div>
+      <mat-icon>account_circle</mat-icon>
+      <strong>Nome do Usuário: </strong>{{ solicitacao.user.nomeCompleto }}
       <mat-icon>location_on</mat-icon>
       <strong>Localização: </strong>{{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
       <mat-icon>attach_money</mat-icon>
