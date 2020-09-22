@@ -1,24 +1,28 @@
-<p>Você está enviando uma proposta para a seguinte solicitação:</p>
-<mat-card-header>
-  <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
-  <mat-card-subtitle>{{ getDescricaoStatusSolicitacao(solicitacao.statusSolicitacao) }}</mat-card-subtitle>
-</mat-card-header>
-<mat-card-content>
-  <p>
-    {{solicitacao.informacoes}}
-  </p>
-  <div>
-    <mat-icon>account_circle</mat-icon>
-    <strong>Nome do Usuário: </strong>{{ solicitacao.user.nomeCompleto }}
-    <mat-icon>location_on</mat-icon>
-    <strong>Localização: </strong>{{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
-    <mat-icon>attach_money</mat-icon>
-    <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
-    <mat-icon>person</mat-icon>
-    <strong>Preferência por profissional do sexo: </strong>
-    {{ getDescricaoSexo(solicitacao.preferenciaSexoProfissional) }}
-  </div>
-</mat-card-content>
+<div class="solicitacao-container">
+  <p>Você está enviando uma proposta para a seguinte solicitação:</p>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ solicitacao.titulo }}</mat-card-title>
+      <mat-card-subtitle>{{ getDescricaoStatusSolicitacao(solicitacao.statusSolicitacao) }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{solicitacao.informacoes}}
+      </p>
+      <div>
+        <mat-icon>account_circle</mat-icon>
+        <strong>Nome do Usuário: </strong>{{ solicitacao.user.nomeCompleto }}
+        <mat-icon>location_on</mat-icon>
+        <strong>Localização: </strong>{{ solicitacao.user.endereco.cidade }} - {{ solicitacao.user.endereco.uf }}
+        <mat-icon>attach_money</mat-icon>
+        <strong>Valor aproximado da solicitação: </strong>R${{ solicitacao.valorAproximadoSolicitacao.toFixed(2) }}
+        <mat-icon>person</mat-icon>
+        <strong>Preferência por profissional do sexo: </strong>
+        {{ getDescricaoSexo(solicitacao.preferenciaSexoProfissional) }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 
 <mat-divider></mat-divider>
 
