@@ -28,4 +28,9 @@ export class SolicitacaoService {
     const userId = localStorage.getItem('id');
     return this.http.put(`${environment.api}/users/${userId}/solicitacoes`, solicitacao);
   }
+
+  aceitarProposta(solicitacaoId: number, propostaId: number) {
+    const userId = localStorage.getItem('id');
+    return this.http.put(`${environment.api}/users/${userId}/solicitacoes/${solicitacaoId}/propostas/${propostaId}/aceitar`, {});
+  }
 }

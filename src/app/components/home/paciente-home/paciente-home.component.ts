@@ -47,7 +47,7 @@ export class PacienteHomeComponent implements OnInit {
   }
 
   abrirModalConfirmarExclusao(idSolicitacao: number) {
-    const dialogRef = this.dialog.open(DialogContentComponent);
+    const dialogRef = this.dialog.open(DialogContentComponent, { data: { mensagem: 'Deseja excluir a solicitação?' } });
 
     dialogRef.afterClosed().subscribe((shouldDeleteSolicitacao) => {
       if (shouldDeleteSolicitacao) {
@@ -81,7 +81,7 @@ export class PacienteHomeComponent implements OnInit {
     if (solicitacao.propostas.length === 0) {
       this.snackBar.open('Sua solicitação ainda não recebeu nenhuma proposta.', null, { duration: 5000, verticalPosition: 'top' });
     } else {
-      this.dialog.open(SolicitacoesDialogComponent, { data: { solicitacao } });
+      this.dialog.open(SolicitacoesDialogComponent, { data: { solicitacao }, minHeight: '60vh', minWidth: '100vw', maxHeight: '100vh', maxWidth: '100vw' });
     }
   }
 

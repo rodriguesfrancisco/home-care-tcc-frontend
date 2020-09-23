@@ -13,12 +13,12 @@
         <strong>Preço solicitado pelo profissional: </strong>R${{ proposta.preco.toFixed(2) }}
       </div>
     </mat-card-content>
-    <mat-card-actions align="end" (click)="routeToChatComponent(proposta.profissional.id)">
-      <button mat-button mat-dialog-close>
+    <mat-card-actions align="end">
+      <button mat-button mat-dialog-close (click)="routeToChatComponent(proposta.profissional.id)">
         <mat-icon>message</mat-icon>
         Enviar Mensagem
       </button>
-      <button mat-button color="primary" mat-dialog-close>
+      <button mat-button color="primary" (click)="abrirModalConfirmarAceitarProposta(data.solicitacao.id, proposta.id)">
         <mat-icon>check_box</mat-icon>
         Aceitar Proposta
       </button>

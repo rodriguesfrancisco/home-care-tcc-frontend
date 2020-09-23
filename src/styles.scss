@@ -14,3 +14,9 @@ mat-spinner {
   width: 70% !important;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .cdk-overlay-pane mat-dialog-container {
+    width: 95% !important;
+  }
+}
