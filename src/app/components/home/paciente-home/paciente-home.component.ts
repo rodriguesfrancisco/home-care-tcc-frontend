@@ -12,6 +12,7 @@ import sexoDescricao from 'src/app/utils/sexoDescricao';
 import { SolicitacoesDialogComponent } from './solicitacoes-dialog/solicitacoes-dialog.component';
 import { SocketService } from 'src/app/services/socket/socket.service';
 import { ListMensagensComponent } from '../../list-mensagens/list-mensagens.component';
+import { AtendimentoDialogComponent } from './atendimento-dialog/atendimento-dialog.component';
 
 @Component({
   selector: 'app-paciente-home',
@@ -97,4 +98,7 @@ export class PacienteHomeComponent implements OnInit {
       });
   }
 
+  openAtendimentoDialog(atendimento) {
+    this.dialog.open(AtendimentoDialogComponent, { data: { atendimento }, minWidth: '100vw', maxHeight: '100vh', maxWidth: '100vw' });
+  }
 }

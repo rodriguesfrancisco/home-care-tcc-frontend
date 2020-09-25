@@ -10,4 +10,5 @@ export interface Solicitacao {
   preferenciaSexoProfissional: string;
   user?: any;
   propostas?: Proposta[];
+  atendimento?: any;
 }

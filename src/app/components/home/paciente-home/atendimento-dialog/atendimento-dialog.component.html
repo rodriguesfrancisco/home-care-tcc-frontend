@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Em atendimento por: {{ data.atendimento.proposta.profissional.nomeCompleto }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <strong>Data do início do atendimento:</strong>
+      {{ data.atendimento.inicioAtendimento | date: 'dd/MM/yyyy HH:mm' }}
+    </p>
+    <p>
+      <strong>Valor cobrado pelo profissional:</strong> {{ data.atendimento.proposta.preco.toFixed(2) }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button mat-dialog-close (click)="routeToChatComponent(data.atendimento.proposta.profissional.id)">
+      <mat-icon>message</mat-icon>
+      Enviar mensagem para o profissional
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

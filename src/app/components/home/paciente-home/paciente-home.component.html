@@ -25,13 +25,17 @@
       </mat-card-content>
       <mat-card-actions align="end">
         <button mat-button (click)="openSolicitacoesDialog(solicitacao)" matBadge="{{ solicitacao.propostas.length }}"
-          [matBadgeHidden]="solicitacao.propostas.length == 0">
+          [matBadgeHidden]="solicitacao.propostas.length == 0" *ngIf="!solicitacao.atendimento">
           <mat-icon>request_page</mat-icon>
           Visualizar Solicitações
         </button>
-        <button mat-button (click)="openMensagensDialog(solicitacao)">
+        <button mat-button (click)="openMensagensDialog(solicitacao)" *ngIf="!solicitacao.atendimento">
           <mat-icon>message</mat-icon>
           Visualizar Mensagens
+        </button>
+        <button mat-button (click)="openAtendimentoDialog(solicitacao.atendimento)" *ngIf="solicitacao.atendimento">
+          <mat-icon>assignment</mat-icon>
+          Visualizar Atendimento
         </button>
         <button mat-button (click)="routeToEditSolicitacao(solicitacao)">
           <mat-icon>edit</mat-icon>

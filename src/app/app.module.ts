@@ -28,6 +28,7 @@ import { SolicitacoesDialogComponent } from './components/home/paciente-home/sol
 import { ListSolicitacoesComponent } from './components/home/profissional-home/list-solicitacoes/list-solicitacoes.component';
 import { ListPropostasComponent } from './components/home/profissional-home/list-propostas/list-propostas.component';
 import { ListMensagensComponent } from './components/list-mensagens/list-mensagens.component';
+import { AtendimentoDialogComponent } from './components/home/paciente-home/atendimento-dialog/atendimento-dialog.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -58,7 +59,8 @@ const routes: Routes = [
     SolicitacoesDialogComponent,
     ListSolicitacoesComponent,
     ListPropostasComponent,
-    ListMensagensComponent
+    ListMensagensComponent,
+    AtendimentoDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
