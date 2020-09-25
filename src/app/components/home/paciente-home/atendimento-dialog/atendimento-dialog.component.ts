@@ -14,8 +14,9 @@ export class AtendimentoDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  routeToChatComponent(profissionalId) {
-    this.router.navigateByUrl('/paciente/chat', { state: { toId: profissionalId } })
+  routeToChatComponent(profissionalId, solicitacaoId) {
+    console.log(solicitacaoId);
+    this.router.navigateByUrl('/paciente/chat', { state: { toId: profissionalId, solicitacaoId } })
   }
 
 }

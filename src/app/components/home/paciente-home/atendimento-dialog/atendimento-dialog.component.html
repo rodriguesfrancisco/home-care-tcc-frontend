@@ -12,7 +12,8 @@
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button mat-dialog-close (click)="routeToChatComponent(data.atendimento.proposta.profissional.id)">
+    <button mat-button mat-dialog-close
+      (click)="routeToChatComponent(data.atendimento.proposta.profissional.id, data.atendimento.proposta.solicitacao)">
       <mat-icon>message</mat-icon>
       Enviar mensagem para o profissional
     </button>

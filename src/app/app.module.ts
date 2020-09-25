@@ -29,6 +29,7 @@ import { ListSolicitacoesComponent } from './components/home/profissional-home/l
 import { ListPropostasComponent } from './components/home/profissional-home/list-propostas/list-propostas.component';
 import { ListMensagensComponent } from './components/list-mensagens/list-mensagens.component';
 import { AtendimentoDialogComponent } from './components/home/paciente-home/atendimento-dialog/atendimento-dialog.component';
+import { ListAtendimentosComponent } from './components/home/profissional-home/list-atendimentos/list-atendimentos.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -60,7 +61,8 @@ const routes: Routes = [
     ListSolicitacoesComponent,
     ListPropostasComponent,
     ListMensagensComponent,
-    AtendimentoDialogComponent
+    AtendimentoDialogComponent,
+    ListAtendimentosComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
