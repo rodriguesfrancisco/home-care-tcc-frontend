@@ -37,11 +37,12 @@
           <mat-icon>assignment</mat-icon>
           Visualizar Atendimento
         </button>
-        <button mat-button (click)="routeToEditSolicitacao(solicitacao)">
+        <button mat-button (click)="routeToEditSolicitacao(solicitacao)" *ngIf="!solicitacao.atendimento">
           <mat-icon>edit</mat-icon>
           Editar
         </button>
-        <button mat-button color="warn" (click)="abrirModalConfirmarExclusao(solicitacao.id)">
+        <button mat-button color="warn" (click)="abrirModalConfirmarExclusao(solicitacao.id)"
+          *ngIf="!solicitacao.atendimento">
           <mat-icon>delete</mat-icon>
           Excluir
         </button>

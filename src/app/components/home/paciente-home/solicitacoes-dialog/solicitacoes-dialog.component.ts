@@ -42,6 +42,7 @@ export class SolicitacoesDialogComponent implements OnInit {
         this.solicitacaoService.aceitarProposta(solicitacaoId, propostaId)
           .subscribe((response) => {
             this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
+            this.router.navigateByUrl('/paciente/home');
           })
       }
     });
