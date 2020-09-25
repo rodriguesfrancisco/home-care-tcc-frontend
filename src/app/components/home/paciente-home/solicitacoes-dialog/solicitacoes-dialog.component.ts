@@ -4,6 +4,7 @@ import { Solicitacao } from 'src/app/models/Solicitacao';
 import { Router } from '@angular/router';
 import { DialogContentComponent } from 'src/app/utils/dialog-content/dialog-content-component';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-solicitacoes-dialog',
@@ -12,7 +13,11 @@ import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 })
 export class SolicitacoesDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private dialog: MatDialog, private solicitacaoService: SolicitacaoService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router,
+    private dialog: MatDialog,
+    private solicitacaoService: SolicitacaoService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +41,7 @@ export class SolicitacoesDialogComponent implements OnInit {
       if (shouldAceitarProposta) {
         this.solicitacaoService.aceitarProposta(solicitacaoId, propostaId)
           .subscribe((response) => {
-            console.log(response);
+            this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
           })
       }
     });
