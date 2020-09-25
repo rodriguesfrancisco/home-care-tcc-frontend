@@ -27,7 +27,7 @@
         <button mat-button (click)="openSolicitacoesDialog(solicitacao)" matBadge="{{ solicitacao.propostas.length }}"
           [matBadgeHidden]="solicitacao.propostas.length == 0" *ngIf="!solicitacao.atendimento">
           <mat-icon>request_page</mat-icon>
-          Visualizar Solicitações
+          Visualizar Propostas
         </button>
         <button mat-button (click)="openMensagensDialog(solicitacao)" *ngIf="!solicitacao.atendimento">
           <mat-icon>message</mat-icon>
