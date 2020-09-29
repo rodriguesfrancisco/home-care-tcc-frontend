@@ -33,11 +33,12 @@
           <mat-icon>message</mat-icon>
           Visualizar Mensagens
         </button>
-        <button mat-button (click)="openAtendimentoDialog(solicitacao.atendimento)" *ngIf="solicitacao.atendimento">
+        <button mat-button (click)="openAtendimentoDialog(solicitacao.atendimento)"
+          *ngIf="solicitacao.statusSolicitacao != 'CONCLUIDA' && solicitacao.atendimento">
           <mat-icon>assignment</mat-icon>
           Visualizar Atendimento
         </button>
-        <button mat-button (click)="routeToEditSolicitacao(solicitacao)" *ngIf="!solicitacao.atendimento">
+        <button mat-button (click)=" routeToEditSolicitacao(solicitacao)" *ngIf="!solicitacao.atendimento">
           <mat-icon>edit</mat-icon>
           Editar
         </button>

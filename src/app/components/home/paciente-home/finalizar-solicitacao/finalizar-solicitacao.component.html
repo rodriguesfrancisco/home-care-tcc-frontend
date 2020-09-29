@@ -1,0 +1,17 @@
+<form [formGroup]="finalizarSolicitacaoForm">
+  <div class="star-rating-container">
+    <p>Dê uma nota para o atendimento:</p>
+    <star-rating value="0" [totalstars]="5" checkedcolor="#F3B700" uncheckedcolor="gray" size="50px" readonly="false"
+      (rate)="onRate($event)"></star-rating>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Informações do Atendimento</mat-label>
+    <textarea matInput placeholder="Descreva como foi sua experiência com o profissional e o atendimento"
+      formControlName="informacoesAtendimento"></textarea>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="finalizarSolicitacao()"
+    [disabled]="!finalizarSolicitacaoForm.valid">
+    Enviar Avaliação
+  </button>
+</form>

@@ -30,6 +30,8 @@ import { ListPropostasComponent } from './components/home/profissional-home/list
 import { ListMensagensComponent } from './components/list-mensagens/list-mensagens.component';
 import { AtendimentoDialogComponent } from './components/home/paciente-home/atendimento-dialog/atendimento-dialog.component';
 import { ListAtendimentosComponent } from './components/home/profissional-home/list-atendimentos/list-atendimentos.component';
+import { FinalizarSolicitacaoComponent } from './components/home/paciente-home/finalizar-solicitacao/finalizar-solicitacao.component';
+import { RatingModule } from 'ng-starrating';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -38,6 +40,7 @@ const routes: Routes = [
   { path: 'paciente/home', pathMatch: 'full', component: PacienteHomeComponent },
   { path: 'paciente/form-solicitacao', pathMatch: 'full', component: SolicitacaoFormComponent },
   { path: 'paciente/chat', pathMatch: 'full', component: ChatComponent },
+  { path: 'paciente/solicitacao/finalizar', pathMatch: 'full', component: FinalizarSolicitacaoComponent },
   { path: 'profissional/home', pathMatch: 'full', component: ProfissionalHomeComponent },
   { path: 'profissional/chat', pathMatch: 'full', component: ChatComponent },
   { path: 'profissional/proposta', pathMatch: 'full', component: PropostaFormComponent }
@@ -62,10 +65,12 @@ const routes: Routes = [
     ListPropostasComponent,
     ListMensagensComponent,
     AtendimentoDialogComponent,
-    ListAtendimentosComponent
+    ListAtendimentosComponent,
+    FinalizarSolicitacaoComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
+    RatingModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -73,7 +78,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    MatNativeDateModule,
+    MatNativeDateModule
   ],
   providers: [
     AppService,
