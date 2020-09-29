@@ -32,7 +32,23 @@
       <strong>Valor solicitado:</strong> {{ atendimento.proposta.preco.toFixed(2) }}
     </p>
   </mat-card-content>
-  <mat-card-actions align="end">
+  <mat-divider *ngIf="atendimento.conclusaoAtendimento"></mat-divider>
+  <mat-card-content *ngIf="atendimento.conclusaoAtendimento">
+    <p>
+      <strong>Data da Conclusão:</strong>
+      {{ atendimento.conclusaoAtendimento.dataConclusao | date: 'dd/MM/yyyy HH:mm' }}
+    </p>
+    <p>
+      <strong>Informações do paciente sobre o atendimento:</strong>
+      {{ atendimento.conclusaoAtendimento.informacoesAtendimento }}
+    </p>
+    <p>
+      <strong>Nota do paciente para o atendimento:</strong>
+    </p>
+    <star-rating value="{{ atendimento.conclusaoAtendimento.nota }}" [totalstars]="5" checkedcolor="#F3B700"
+      uncheckedcolor="gray" size="35px" readonly="true"></star-rating>
+  </mat-card-content>
+  <mat-card-actions align="end" *ngIf="!atendimento.conclusaoAtendimento">
     <button mat-button
       (click)="routeToChatComponent(atendimento.proposta.solicitacao.user.id, atendimento.proposta.solicitacao.id)">
       <mat-icon>message</mat-icon>
