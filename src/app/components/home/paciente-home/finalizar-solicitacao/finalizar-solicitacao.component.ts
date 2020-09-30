@@ -33,7 +33,6 @@ export class FinalizarSolicitacaoComponent implements OnInit {
     };
     this.solicitacaoService.finalizarSolicitacao(this.atendimento.solicitacao, this.atendimento.id, conclusaoAtendimento)
       .subscribe((response) => {
-        console.log(response);
         this.router.navigateByUrl('/paciente/home');
       });
   }

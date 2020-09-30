@@ -44,7 +44,6 @@ export class PacienteHomeComponent implements OnInit {
     this.httpClient.get<Solicitacao>(`${environment.api}/users/${userId}/solicitacoes`)
       .subscribe((solicitacao) => {
         this.solicitacao = solicitacao;
-        console.log(this.solicitacao);
       });
   }
 

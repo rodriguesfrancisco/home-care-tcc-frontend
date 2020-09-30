@@ -32,6 +32,7 @@ import { AtendimentoDialogComponent } from './components/home/paciente-home/aten
 import { ListAtendimentosComponent } from './components/home/profissional-home/list-atendimentos/list-atendimentos.component';
 import { FinalizarSolicitacaoComponent } from './components/home/paciente-home/finalizar-solicitacao/finalizar-solicitacao.component';
 import { RatingModule } from 'ng-starrating';
+import { DetalheProfissionalComponent } from './components/home/paciente-home/detalhe-profissional/detalhe-profissional.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -67,6 +68,7 @@ const routes: Routes = [
     AtendimentoDialogComponent,
     ListAtendimentosComponent,
     FinalizarSolicitacaoComponent,
+    DetalheProfissionalComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { DialogContentComponent } from 'src/app/utils/dialog-content/dialog-content-component';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/user.service';
+import { DetalheProfissionalComponent } from '../detalhe-profissional/detalhe-profissional.component';
 
 @Component({
   selector: 'app-solicitacoes-dialog',
@@ -17,7 +19,8 @@ export class SolicitacoesDialogComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private solicitacaoService: SolicitacaoService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -46,6 +49,13 @@ export class SolicitacoesDialogComponent implements OnInit {
           })
       }
     });
+  }
+
+  abrirModalDetalhesProfissional(profissionalId) {
+    this.userService.detalharProfissional(profissionalId)
+      .subscribe((response) => {
+        this.dialog.open(DetalheProfissionalComponent, { data: response, minWidth: '100vw', maxHeight: '100vh', maxWidth: '100vw' });
+      });
   }
 
 }

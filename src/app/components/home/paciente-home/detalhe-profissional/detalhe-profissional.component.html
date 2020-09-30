@@ -1,0 +1,24 @@
+<mat-dialog-content class="mat-typography">
+  <mat-card>
+    <mat-card-content>
+      <div>
+        <mat-icon>account_circle</mat-icon>
+        <strong>Nome do Profissional: </strong>{{ data.nomeCompleto }}
+      </div>
+      <div>
+        <mat-icon>location_city</mat-icon>
+        <strong>Endereço: </strong>{{ data.endereco.cidade }} - {{ data.endereco.uf }}
+      </div>
+      <div>
+        <mat-icon>star_rate</mat-icon>
+        <strong>Nota Geral: </strong> {{ data.notaGeral }}
+        <star-rating value="{{ data.notaGeral }}" [totalstars]="5" checkedcolor="#F3B700" uncheckedcolor="gray"
+          size="35px" readonly="true"></star-rating>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

@@ -14,6 +14,10 @@
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
+      <button mat-button (click)="abrirModalDetalhesProfissional(proposta.profissional.id)">
+        <mat-icon>account_circle</mat-icon>
+        Detalhes do Profissional
+      </button>
       <button mat-button mat-dialog-close (click)="routeToChatComponent(proposta.profissional.id)">
         <mat-icon>message</mat-icon>
         Enviar Mensagem
