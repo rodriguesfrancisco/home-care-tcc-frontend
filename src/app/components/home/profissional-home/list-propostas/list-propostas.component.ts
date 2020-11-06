@@ -25,7 +25,7 @@ export class ListPropostasComponent implements OnInit {
   }
 
   routeToEditPropostaForm(proposta: Proposta) {
-    this.router.navigateByUrl('/profissional/proposta', { state: { proposta } });
+    this.router.navigateByUrl('/profissional/proposta', { state: { solicitacao: proposta.solicitacao, proposta } });
   }
 
   getDescricaoStatusSolicitacao(codigoStatus) {
