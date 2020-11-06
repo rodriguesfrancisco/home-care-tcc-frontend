@@ -7,7 +7,7 @@ export const rxJsStompConfig: InjectableRxStompConfig = {
   brokerURL: environment.wsApi,
   heartbeatIncoming: 0,
   heartbeatOutgoing: 20000,
-  reconnectDelay: 20000,
+  reconnectDelay: 1000,
   debug: (msg: string): void => {
     console.log(new Date(), msg);
   }
