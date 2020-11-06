@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Solicitacao } from 'src/app/models/Solicitacao';
 import { Router } from '@angular/router';
 import { DialogContentComponent } from 'src/app/utils/dialog-content/dialog-content-component';
@@ -20,7 +20,8 @@ export class SolicitacoesDialogComponent implements OnInit {
     private dialog: MatDialog,
     private solicitacaoService: SolicitacaoService,
     private snackBar: MatSnackBar,
-    private userService: UserService) { }
+    private userService: UserService,
+    private thisDialogRef: MatDialogRef<SolicitacoesDialogComponent>) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +46,7 @@ export class SolicitacoesDialogComponent implements OnInit {
         this.solicitacaoService.aceitarProposta(solicitacaoId, propostaId)
           .subscribe((response) => {
             this.snackBar.open(response['message'], null, { duration: 5000, verticalPosition: 'top' });
-            this.router.navigateByUrl('/paciente/home');
+            this.thisDialogRef.close();
           })
       }
     });
