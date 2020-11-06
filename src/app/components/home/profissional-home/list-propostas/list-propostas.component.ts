@@ -25,6 +25,8 @@ export class ListPropostasComponent implements OnInit {
   }
 
   routeToEditPropostaForm(proposta: Proposta) {
+    proposta.profissional['authorities'] = null;
+    proposta.solicitacao.user['authorities'] = null;
     this.router.navigateByUrl('/profissional/proposta', { state: { solicitacao: proposta.solicitacao, proposta } });
   }
 
