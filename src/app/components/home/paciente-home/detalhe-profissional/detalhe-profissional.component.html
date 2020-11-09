@@ -11,7 +11,7 @@
       </div>
       <div>
         <mat-icon>star_rate</mat-icon>
-        <strong>Nota Geral: </strong> {{ data.notaGeral }}
+        <strong>Nota Geral: </strong> {{ data.notaGeral.toFixed(2) }}
         <star-rating value="{{ data.notaGeral }}" [totalstars]="5" checkedcolor="#F3B700" uncheckedcolor="gray"
           size="35px" readonly="true"></star-rating>
       </div>
